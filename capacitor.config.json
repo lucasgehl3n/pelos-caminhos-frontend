@@ -1,0 +1,8 @@
+{
+  "appId": "pelos.caminhos.app",
+  "appName": "pelos-caminhos",
+  "webDir": ".output/public",
+  "server": {
+    "androidScheme": "https"
+  }
+}
