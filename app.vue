@@ -2,13 +2,16 @@
 import bottomNavigator from '/pages/bottom-navigator.vue';
 
 const route = useRoute();
+
 </script>
 <template>
-  <div class="dark:text-white w-full bg-gray-50 h-screen">
+  <div class="dark:text-white w-full h-screen">
 
     <template v-if="!route.path.includes('login')">
       <div v-if="$device.isMobile">
-        <NuxtPage />
+        <div class="block p-8">
+          <NuxtPage />
+        </div>
         <bottom-navigator></bottom-navigator>
       </div>
       <div v-else-if="$device.isDesktop">
