@@ -4,13 +4,17 @@ export default defineI18nConfig(() => ({
     messages: {
         en: {
             password: 'Password',
-            placeholder_mail: 'example@example.com',
+            placeholder_mail: "example{'@'}example.com",
             sign_up: 'Sign up',
+            home: 'Home',
+            ngos: 'NGOs',
         },
         br: {
             password: 'Senha',
-            placeholder_mail: 'exemplo@exemplo.com',
+            placeholder_mail: "exemplo{'@'}exemplo.com",
             sign_up: 'Cadastrar',
+            home: 'Início',
+            ngos: 'ONGs',
         }
     }
 }))
