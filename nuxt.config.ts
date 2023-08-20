@@ -1,13 +1,16 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  css: ['~/assets/scss/main.scss'],
+  css: [
+    '~/assets/scss/main.scss',
+    '@fortawesome/fontawesome-svg-core/styles.css'
+  ],
   postcss: {
     plugins: {
       tailwindcss: {},
       autoprefixer: {},
     },
   },
-  ssr: true,
+  ssr: false,
   devtools: { enabled: true },
   modules: [
     '@nuxtjs/device',
@@ -19,6 +22,8 @@ export default defineNuxtConfig({
   },
   plugins: [
     '~/plugins/axios',
+    '~/plugins/fontAwesome',
+    "~/plugins/mask"
   ],
   pages: true,
 })

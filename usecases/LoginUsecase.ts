@@ -8,7 +8,8 @@ export default class LoginUsecase {
                 {
                     email,
                     password
-                }
+                },
+                { withCredentials: true },
             );
             return res;
         } catch (error) {
@@ -17,7 +18,7 @@ export default class LoginUsecase {
     }
     static async SubmitFoo() {
         try {
-            const res = await axios.post(`${Constants.API_URL}/testingRoute`);
+            const res = await axios.get(`${Constants.API_URL}/testingRoute`, { withCredentials: true },);
             return res;
         } catch (error) {
             return error;

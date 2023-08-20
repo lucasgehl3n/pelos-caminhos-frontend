@@ -1,6 +1,7 @@
 <script setup>
 import bottomNavigator from '/pages/bottom-navigator.vue';
-
+import axios from 'axios';
+axios.defaults.withCrendentails = true;
 const route = useRoute();
 
 </script>
@@ -86,7 +87,7 @@ const route = useRoute();
       </div>
     </template>
     <template v-else>
-      <NuxtPage />
+      <NuxtPage class="h-screen" />
     </template>
   </div>
 </template>

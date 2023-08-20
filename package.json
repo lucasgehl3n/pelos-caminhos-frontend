@@ -28,6 +28,9 @@
     "@capacitor/cli": "^5.2.2",
     "@capacitor/core": "^5.2.2",
     "@capacitor/ios": "^5.2.2",
+    "@fortawesome/fontawesome-svg-core": "^6.4.2",
+    "@fortawesome/free-regular-svg-icons": "^6.4.2",
+    "@fortawesome/vue-fontawesome": "^3.0.3",
     "@nuxt/types": "^2.17.1",
     "@nuxtjs/device": "^3.1.0",
     "@pinia/nuxt": "^0.4.11",
@@ -35,6 +38,7 @@
     "express": "^4.18.2",
     "flowbite": "^1.8.0",
     "flowbite-vue": "^0.0.17-next.0",
+    "maska": "^2.1.10",
     "pinia": "^2.1.6",
     "vue-router": "^4.2.4"
   },
