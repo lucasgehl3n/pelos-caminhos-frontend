@@ -6,6 +6,8 @@ const route = useRoute();
 
 </script>
 <template>
+  <Title>Pelos Caminhos</Title>
+
   <div class="dark:text-white w-full h-screen">
 
     <template v-if="!route.path.includes('login')">

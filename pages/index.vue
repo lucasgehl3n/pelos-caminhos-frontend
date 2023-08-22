@@ -1,7 +1,7 @@
 <script setup>
 import { TheCard } from 'flowbite-vue';
-import LoginUsecase from '../usecases/LoginUsecase';
-LoginUsecase.SubmitFoo();
+import LoginGateway from '../gateways/LoginGateway';
+LoginGateway.SubmitFoo();
 </script>
 
 <template>

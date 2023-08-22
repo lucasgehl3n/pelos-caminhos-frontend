@@ -1,8 +1,9 @@
 <script setup>
 import { Input, Button } from 'flowbite-vue'
 import { defineEmits, watch } from 'vue'
+import FilesFormat from '../helpers/format/FilesFormat';
 const props = defineProps({
-    logo: '',
+    logo: File | String,
 });
 
 const emit = defineEmits(['changeImage'])
@@ -13,29 +14,9 @@ const emitChangeImage = (value) => {
 };
 
 const getImageNGO = async (event) => {
-    emitChangeImage(event.target.files[0]);
-};
-
-watch(
-    () => props.logo,
-    () => {
-        showFilePreview();
-    }
-);
-
-const showFilePreview = () => {
-    if (props.logo) {
-        let reader = new FileReader();
-
-        reader.onload = (e) => {
-            logoPreview.value = e.target.result;
-        };
-
-        logoPreview.value = reader.readAsDataURL(props.logo);
-    }
-    else {
-        logoPreview.value = '';
-    }
+    FilesFormat.BinaryToBase64(event.target.files[0]).then((result) => {
+        emitChangeImage(result);
+    });
 };
 
 const clearLogo = () => {
@@ -45,7 +26,7 @@ const clearLogo = () => {
 </script>
 
 <template>
-    <div class="flex items-center justify-center w-full" v-if="!logoPreview">
+    <div class="flex items-center justify-center w-full" v-if="!props.logo">
         <label for="dropzone-file"
             class="flex flex-col items-center justify-center w-full h-48 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
             <div class="flex flex-col items-center justify-center pt-5 pb-6">
@@ -65,7 +46,7 @@ const clearLogo = () => {
         </label>
     </div>
     <div v-else>
-        <img class="w-20 h-20 rounded" :src="logoPreview" />
+        <img class="w-20 h-20 rounded" :src="props.logo" />
 
         <Button color="red" class="mt-2" v-on:click="clearLogo">
             <font-awesome-icon :icon="['far', 'trash-can']" />

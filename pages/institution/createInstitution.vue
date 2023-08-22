@@ -8,20 +8,37 @@ import StepperObject from '../../structures/StepperObject';
 import OnChangeStep from '../../helpers/OnChangeStep';
 import DefaultFieldValidatorObject from '../../helpers/objects/DefaultFieldValidatorObject';
 import { reactive } from 'vue'
-
+import InstitutionModel from '../../structures/Models/InstitutionModel';
+import InstitutionGateway from '../../gateways/InstitutionGateway';
+import Modal from '../../components/modal.vue';
+import ProgressBarControl from '../../helpers/ProgressBarControl.ts'
+const route = useRoute();
+const router = useRouter();
 const { t } = useI18n();
-const form = reactive({
-    name: '',
-    document: '',
-    description: '',
-    email: '',
-    phone: '',
-    street: '',
-    number: '',
-    complement: '',
-    site: '',
-    logo: ''
-})
+const form = reactive(new InstitutionModel())
+const showModalSuccess = ref(false);
+const dynamicWidth = ref('0%');
+onMounted(() => {
+    if (route.params.id) {
+        InstitutionGateway.Get(route.params.id).then((response) => {
+            if (response.data) {
+                mapRequestToForm(response.data)
+            }
+        });
+    }
+});
+
+const mapRequestToForm = (data) => {
+    form.id = data.id;
+    form.name = data.name;
+    form.description = data.description;
+    form.email = data.email;
+    form.phone = data.phone;
+    form.site = data.site;
+    form.address = data.address;
+    form.document = data.document;
+    form.logo = data.image;
+}
 
 const formFieldErrorValidator = reactive({
     name: new DefaultFieldValidatorObject(),
@@ -45,6 +62,15 @@ const onChangeImageUploaded = (value) => {
     form.logo = value;
 }
 
+const showSuccessModal = () => {
+    showModalSuccess.value = true;
+    const callbackFn = () => {
+        showModalSuccess.value = false;
+        router.push({ name: 'index' });
+    };
+    ProgressBarControl(dynamicWidth, 50, 2000, callbackFn);
+}
+
 const isStepInitialSelected = computed(() => stepperControlValues.value[0].active);
 const isStepContactSelected = computed(() => stepperControlValues.value[1].active);
 
@@ -65,12 +91,12 @@ const fieldsToValidate = computed(() => ({
         tab: 0,
     },
     street: {
-        field: form.street,
+        field: form.address.street,
         fieldError: formFieldErrorValidator.street,
         tab: 1,
     },
     number: {
-        field: form.number,
+        field: form.address.number,
         fieldError: formFieldErrorValidator.number,
         tab: 1,
     }
@@ -126,16 +152,33 @@ const switchTabContact = () => {
 }
 
 const
-    saveForm = () => {
-        console.log(form)
-
+    saveForm = async () => {
         if (validateRequiredFields()) {
-            console.log('Válido');
+            await InstitutionGateway.Save(form);
+            showSuccessModal();
         }
     };
 </script>
 
 <template>
+    <Modal :show-modal="showModalSuccess">
+        <template v-slot:body>
+            <div
+                class="w-12 h-12 rounded-full bg-green-100 dark:bg-green-900 p-2 flex items-center justify-center mx-auto mb-3.5">
+                <svg aria-hidden="true" class="w-8 h-8 text-green-500 dark:text-green-400" fill="currentColor"
+                    viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"></path>
+                </svg>
+            </div>
+            <p class="mb-4 text-lg font-semibold text-gray-900 dark:text-white">{{  t('record_saved_successfully') }}</p>
+            <div class="bg-blue-600 h-1.5 rounded-full dark:bg-blue-500" 
+                :style="{ width: dynamicWidth }">
+            </div>
+        </template>
+    </Modal>
+
     <PageHeader :title="$t('ngo_registration')" :subtitle="$t('enter_details_to_get_started')"></PageHeader>
     <div class="py-5">
         <Stepper :control="stepperControl" v-on:clickTab="onChangeStep"></Stepper>
@@ -148,7 +191,7 @@ const
             <ErrorMessage v-bind="formFieldErrorValidator.name" />
         </div>
         <div class="py-5">
-            <Input :placeholder="$t('placeholder_document')" :label="$t('document')" name="document" v-model="document"
+            <Input :placeholder="$t('placeholder_document')" :label="$t('document')" name="document" v-model="form.document"
                 v-maska :data-maska="$t('mask_document')" />
         </div>
         <div>
@@ -188,7 +231,7 @@ const
         </div>
 
         <div class="py-5">
-            <Input :placeholder="$t('placeholder_adress')" :label="$t('adress')" name="street" v-model="form.street"
+            <Input :placeholder="$t('placeholder_adress')" :label="$t('adress')" name="street" v-model="form.address.street"
                 v-on:change="removeFieldError" />
 
             <ErrorMessage v-bind="formFieldErrorValidator.street" />
@@ -196,18 +239,18 @@ const
 
         <div class="flex">
             <div class="md:w-2/4 md:mr-4 sm:w-full">
-                <Input :placeholder="$t('placeholder_number')" name="number" v-model="form.number"
+                <Input :placeholder="$t('placeholder_number')" name="number" v-model="form.address.number"
                     v-on:change="removeFieldError" />
 
                 <ErrorMessage v-bind="formFieldErrorValidator.number" />
             </div>
             <div class="md:w-2/4 sm:w-full">
-                <Input :placeholder="$t('placeholder_complement')" name="complement" v-model="form.complement" />
+                <Input :placeholder="$t('placeholder_complement')" name="complement" v-model="form.address.complement" />
             </div>
         </div>
 
         <div class="py-5">
-            <ImageUpload  v-on:change-image="onChangeImageUploaded" :logo="form.logo"></ImageUpload>
+            <ImageUpload v-on:change-image="onChangeImageUploaded" :logo="form.logo"></ImageUpload>
         </div>
         <div class="py-5">
             <Button color="light" v-on:click="switchTabInit">Voltar</Button>&nbsp;

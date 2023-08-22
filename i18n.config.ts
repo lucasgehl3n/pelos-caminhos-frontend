@@ -30,7 +30,8 @@ export default defineI18nConfig(() => ({
             adress: 'Adress',
             drag_and_drop: 'Drag and drop your image, or click to upload',
             field_required: 'Field required!',
-            value_must_be_entered: 'Necessário informar um valor!',
+            value_must_be_entered: 'Need to inform a value!',
+            record_saved_successfully: 'Record saved successfully!',
         },
         br: {
             password: 'Senha',
@@ -61,6 +62,7 @@ export default defineI18nConfig(() => ({
             drag_and_drop: 'Arraste e solte a imagem, ou clique para fazer upload',
             field_required: 'Campo obrigatório!',
             value_must_be_entered: 'Necessário informar um valor!',
+            record_saved_successfully: 'Registro salvo com sucesso!',
         }
     }
 }))

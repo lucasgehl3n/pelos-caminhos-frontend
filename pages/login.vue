@@ -1,7 +1,7 @@
 <script setup>
 import { Input, Button } from 'flowbite-vue'
 import { ref } from 'vue'
-import LoginUsecase from '../usecases/LoginUsecase';
+import LoginGateway from '../gateways/LoginGateway';
 import DefaultFieldValidatorObject from '../helpers/objects/DefaultFieldValidatorObject';
 import userStore from '@/stores/user.store'
 
@@ -42,7 +42,7 @@ function SetInvalidPasswordError() {
 
 async function OnSubmitLogin() {
     if (ValidateLoginFields()) {
-        const response = await LoginUsecase.SubmitLogin(email.value, password.value);
+        const response = await LoginGateway.SubmitLogin(email.value, password.value);
         if (response.request.status == 200) {
             storeUserObject.setUserAuthentication(true);
             window.location.href = "/";
