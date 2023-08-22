@@ -16,12 +16,4 @@ export default class LoginGateway {
             return error;
         }
     }
-    static async SubmitFoo() {
-        try {
-            const res = await axios.get(`${Constants.API_URL}/testingRoute`, { withCredentials: true },);
-            return res;
-        } catch (error) {
-            return error;
-        }
-    }
 }

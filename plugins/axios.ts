@@ -11,6 +11,9 @@ export default function (ctx: any) {
         if (error.response.status === 403) {
             window.location.href = '/login';
         }
+        else if (error.response.status === 401) {
+            window.location.href = '/';
+        }
         return Promise.reject(error)
     })
 };
