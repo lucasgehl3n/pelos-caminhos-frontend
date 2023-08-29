@@ -12,6 +12,8 @@ import InstitutionModel from '../../structures/Models/InstitutionModel';
 import InstitutionGateway from '../../gateways/InstitutionGateway';
 import Modal from '../../components/modal.vue';
 import ProgressBarControl from '../../helpers/ProgressBarControl.ts'
+import deepcopy from 'deepcopy';
+
 const route = useRoute();
 const router = useRouter();
 const { t } = useI18n();
@@ -38,6 +40,7 @@ const mapRequestToForm = (data) => {
     form.address = data.address;
     form.document = data.document;
     form.logo = data.image;
+    form.publicImages = data.publicImages;
 }
 
 const formFieldErrorValidator = reactive({
@@ -60,6 +63,19 @@ const onChangeStep = (step) => {
 
 const onChangeImageUploaded = (value) => {
     form.logo = value;
+}
+
+const onChangeListPublicImagesUploaded = (value) => {
+    const newImage = { id: null, image: value };
+    form.publicImages.push(newImage);
+}
+
+const removeImage = (index) => {
+    const image = form.publicImages.find((img, i) => i === index);
+    form.publicImages = form.publicImages.filter((img, i) => i !== index);
+    if (image.id || image.id === 0) {
+        form.deletedPublicImages.push(image.id);
+    }
 }
 
 const showSuccessModal = () => {
@@ -154,7 +170,7 @@ const switchTabContact = () => {
 const
     saveForm = async () => {
         if (validateRequiredFields()) {
-            await InstitutionGateway.Save(form);
+            await InstitutionGateway.Save(deepcopy(form));
             showSuccessModal();
         }
     };
@@ -172,9 +188,8 @@ const
                         clip-rule="evenodd"></path>
                 </svg>
             </div>
-            <p class="mb-4 text-lg font-semibold text-gray-900 dark:text-white">{{  t('record_saved_successfully') }}</p>
-            <div class="bg-blue-600 h-1.5 rounded-full dark:bg-blue-500" 
-                :style="{ width: dynamicWidth }">
+            <p class="mb-4 text-lg font-semibold text-gray-900 dark:text-white">{{ t('record_saved_successfully') }}</p>
+            <div class="bg-blue-600 h-1.5 rounded-full dark:bg-blue-500" :style="{ width: dynamicWidth }">
             </div>
         </template>
     </Modal>
@@ -230,29 +245,52 @@ const
                 :data-maska="$t('mask_phone')" />
         </div>
 
-        <div class="py-5">
+        <div>
             <Input :placeholder="$t('placeholder_adress')" :label="$t('adress')" name="street" v-model="form.address.street"
                 v-on:change="removeFieldError" />
 
             <ErrorMessage v-bind="formFieldErrorValidator.street" />
         </div>
 
-        <div class="flex">
-            <div class="md:w-2/4 md:mr-4 sm:w-full">
+        <div class="sm:flex py-5">
+            <div class="md:w-2/4 sm:mr-4 pb-5 sm:py-0">
                 <Input :placeholder="$t('placeholder_number')" name="number" v-model="form.address.number"
                     v-on:change="removeFieldError" />
 
                 <ErrorMessage v-bind="formFieldErrorValidator.number" />
             </div>
-            <div class="md:w-2/4 sm:w-full">
+            <div class="md:w-2/4">
                 <Input :placeholder="$t('placeholder_complement')" name="complement" v-model="form.address.complement" />
             </div>
         </div>
 
-        <div class="py-5">
-            <ImageUpload v-on:change-image="onChangeImageUploaded" :logo="form.logo"></ImageUpload>
+        <div>
+            <p class="pb-2">Imagem de perfil</p>
+            <ImageUpload v-on:change-image="onChangeImageUploaded" :show-gallery="true" :rounded="true" :logo="form.logo"
+                :id="'profile-image'">
+                <label for="profile-image">
+                    <div class="flex py-2 items-center justify-center h-20 w-20 rounded-full bg-stone-800">
+                        <span class="text-white font-bold text-2xl">
+                            <font-awesome-icon :icon="['fas', 'plus']" />
+                        </span>
+                    </div>
+                </label>
+            </ImageUpload>
         </div>
-        <div class="py-5">
+        <div class="py-10">
+            Galeria de imagens
+            <ImageUpload v-on:change-image="onChangeListPublicImagesUploaded" :logo="form.publicImages" :show-gallery="true"
+                v-on:remove-image="removeImage" :id="'gallery-images'" :image-prop="'image'">
+                <label for="gallery-images">
+                    <div class="flex py-2 items-center justify-center h-20 w-20 bg-stone-800">
+                        <span class="text-white font-bold text-2xl">
+                            <font-awesome-icon :icon="['fas', 'plus']" />
+                        </span>
+                    </div>
+                </label>
+            </ImageUpload>
+        </div>
+        <div>
             <Button color="light" v-on:click="switchTabInit">Voltar</Button>&nbsp;
             <Button color="default" v-on:click="saveForm">Cadastrar</Button>
         </div>

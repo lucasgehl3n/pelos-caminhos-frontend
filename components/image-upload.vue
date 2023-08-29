@@ -2,8 +2,13 @@
 import { Input, Button } from 'flowbite-vue'
 import { defineEmits, watch } from 'vue'
 import FilesFormat from '../helpers/format/FilesFormat';
+
 const props = defineProps({
-    logo: File | String,
+    logo: File | Array | String,
+    rounded: false,
+    showGallery: true,
+    id: 'dropzone-file',
+    imageProp: '',
 });
 
 const emit = defineEmits(['changeImage'])
@@ -13,41 +18,83 @@ const emitChangeImage = (value) => {
     emit('changeImage', value)
 };
 
-const getImageNGO = async (event) => {
-    FilesFormat.BinaryToBase64(event.target.files[0]).then((result) => {
-        emitChangeImage(result);
-    });
+const isMultiple = computed(() => props.logo instanceof Array);
+let previousFiles = [];
+
+const getImage = async (event) => {
+    const currentFiles = Array.from(event.target.files);
+
+    const newFiles = currentFiles.filter(file => !previousFiles.includes(file));
+
+    for (const file of newFiles) {
+        FilesFormat.BinaryToBase64(file).then((result) => {
+            emitChangeImage(result);
+        });
+    }
 };
 
 const clearLogo = () => {
     emitChangeImage('');
     logoPreview.value = '';
 }
+
+const getDefaultImageHover = () => ({
+    index: null,
+    isHovered: false,
+    isDeleted: false,
+});
+
+const imageHover = ref(getDefaultImageHover())
+
+const onHoverImage = (index) => {
+    imageHover.value.index = index;
+}
+
+const onLeaveImage = () => {
+    imageHover.value = getDefaultImageHover();
+}
+
+const removeImage = (index) => {
+    imageHover.value = getDefaultImageHover();
+    emit('removeImage', index)
+}
 </script>
 
 <template>
-    <div class="flex items-center justify-center w-full" v-if="!props.logo">
-        <label for="dropzone-file"
-            class="flex flex-col items-center justify-center w-full h-48 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-            <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                <svg class="w-8 h-10 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
-                </svg>
-                <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">
-                    <span class="font-semibold">
-                        {{ $t('drag_and_drop') }}
-                    </span>
-                </p>
-                <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG</p>
-            </div>
-            <input id="dropzone-file" type="file" class="hidden" v-on:change="getImageNGO" />
-        </label>
-    </div>
-    <div v-else>
-        <img class="w-20 h-20 rounded" :src="props.logo" />
+    <div class="w-full" v-if="!props.logo || isMultiple">
+        <div class="flex">
+            <slot></slot>
+            <input :id="props.id" type="file" class="hidden" v-on:change="getImage" :multiple="isMultiple" />
+            <div v-if="isMultiple && props.showGallery" class="ml-2 flex">
+                <div class="overflow-x-auto flex w-full max-w-vw">
+                    <div v-for="(img, i) in props.logo" class="mr-2 img-gallery-md w-full" @mouseover="onHoverImage(i)"
+                        @mouseleave="onLeaveImage(i)">
 
+                        <div class="inline-block w-full">
+                            <img class="w-full rounded max-h-24 h-56" :class="{ 'rounded-full': props.rounded }" 
+                                :src="imageProp ? img[imageProp] : img"
+                                v-if="imageHover.index === null || (imageHover.index !== null && imageHover.index !== i)" />
+
+                            <div class="flex flex-col justify-center items-center w-full rounded max-h-24 h-56" v-else
+                                v-on:click="removeImage(i)">
+                                <div class="flex items-center justify-center h-full w-full bg-red-800">
+                                    <span class="text-white font-bold text-2xl">
+                                        <font-awesome-icon :icon="['far', 'trash-can']" />
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <Button color="red" class="mt-2" v-on:click="clearLogo" v-if="!isMultiple && props.logo">
+            <font-awesome-icon :icon="['far', 'trash-can']" />
+        </Button>&nbsp;
+    </div>
+
+    <div v-else-if="props.showGallery">
+        <img class="w-20 h-20 rounded" :class="{ 'rounded-full': props.rounded }" :src="props.logo" />
         <Button color="red" class="mt-2" v-on:click="clearLogo">
             <font-awesome-icon :icon="['far', 'trash-can']" />
         </Button>&nbsp;

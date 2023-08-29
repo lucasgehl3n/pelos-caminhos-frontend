@@ -1,26 +1,46 @@
 import axios from 'axios';
 import Constants from '../constants';
-import InstitutionModel from 'structures/Models/InstitutionModel';
+import InstitutionModel from '../structures/Models/InstitutionModel';
+import InstitutionImageModel from '../structures/Models/InstitutionImageModel';
+import { serialize } from 'object-to-formdata';
+
+const _mapPublicImagesToFormData = async (publicImages: InstitutionImageModel[], formData: FormData) => {
+    for (let i = 0; i < publicImages.length; i++) {
+        const imageString = publicImages[i].image as string;
+
+        if (!publicImages[i].id) {
+            publicImages[i] = new InstitutionImageModel();
+        }
+
+        const blob = await (await fetch(imageString)).blob();
+        formData.append(`publicImages[${i}].id`, publicImages[i].id.toString());
+        formData.append(`publicImages[${i}].image`, blob);
+    }
+}
 
 export default class InstitutionGateway {
     static async Save(model: InstitutionModel) {
         try {
-            let logo: Blob = new Blob();
-            if (model.logo)
-                logo = await (await fetch(model.logo)).blob();
+            const publicImages = model.publicImages;
+            model.publicImages = [];
+
+
+            const logo = await (await fetch(model.logo)).blob();
+            model.logo = '';
+
+            const formData = serialize(model);
+            formData.append('logo', logo);
+
+            await _mapPublicImagesToFormData(publicImages, formData);
 
             const res = await axios.post(`${Constants.API_URL}/institution/save`,
-                {
-                    ...model,
-                    logo,
-                    adress: JSON.stringify(model.address)
-                },
+                formData,
                 {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     },
                     withCredentials: true
-                },
+                }
             );
             return res;
         } catch (error) {

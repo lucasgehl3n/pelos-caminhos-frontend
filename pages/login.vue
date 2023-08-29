@@ -42,6 +42,7 @@ function SetInvalidPasswordError() {
 
 async function OnSubmitLogin() {
     if (ValidateLoginFields()) {
+        storeUserObject.setUserAuthentication(false);
         const response = await LoginGateway.SubmitLogin(email.value, password.value);
         if (response.request.status == 200) {
             storeUserObject.setUserAuthentication(true);

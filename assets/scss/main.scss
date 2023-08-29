@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.max-w-vw {
+    max-width: 70vw;
+}
+
+//Img upload
+.img-gallery-md {
+    min-width:160px;
+    max-width:160px;
+}
