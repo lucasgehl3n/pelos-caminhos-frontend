@@ -2,7 +2,8 @@
 export default defineNuxtConfig({
   css: [
     '~/assets/scss/main.scss',
-    '@fortawesome/fontawesome-svg-core/styles.css'
+    '@fortawesome/fontawesome-svg-core/styles.css',
+    'vue3-perfect-scrollbar/dist/vue3-perfect-scrollbar.css',
   ],
   postcss: {
     plugins: {
@@ -23,7 +24,9 @@ export default defineNuxtConfig({
   plugins: [
     '~/plugins/axios',
     '~/plugins/fontAwesome',
-    "~/plugins/mask"
+    "~/plugins/mask",
+    '~/plugins/scrollBar',
+    '~/plugins/infiniteScroll',
   ],
   pages: true,
 })

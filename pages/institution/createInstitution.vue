@@ -82,7 +82,7 @@ const showSuccessModal = () => {
     showModalSuccess.value = true;
     const callbackFn = () => {
         showModalSuccess.value = false;
-        router.push({ name: 'index' });
+        router.push({ name: 'institution' });
     };
     ProgressBarControl(dynamicWidth, 50, 2000, callbackFn);
 }
@@ -194,105 +194,108 @@ const
         </template>
     </Modal>
 
-    <PageHeader :title="$t('ngo_registration')" :subtitle="$t('enter_details_to_get_started')"></PageHeader>
-    <div class="py-5">
-        <Stepper :control="stepperControl" v-on:clickTab="onChangeStep"></Stepper>
-    </div>
-
-    <div v-if="isStepInitialSelected">
-        <div>
-            <Input :placeholder="$t('placeholder_name')" v-model="form.name" :label="$t('name')" name="name"
-                v-on:change="removeFieldError" />
-            <ErrorMessage v-bind="formFieldErrorValidator.name" />
-        </div>
+    <div class="w-full sm:w-3/5">
+        <PageHeader :title="$t('ngo_registration')" :subtitle="$t('enter_details_to_get_started')"></PageHeader>
         <div class="py-5">
-            <Input :placeholder="$t('placeholder_document')" :label="$t('document')" name="document" v-model="form.document"
-                v-maska :data-maska="$t('mask_document')" />
-        </div>
-        <div>
-            <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                {{ $t('description') }}
-            </label>
-            <textarea name="description" rows="4" v-model="form.description" v-on:change="removeFieldError"
-                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                :placeholder="$t('placeholder_description_ngos')" />
-
-            <ErrorMessage v-bind="formFieldErrorValidator.description" />
-        </div>
-        <div class="py-5">
-            <Input :placeholder="$t('placeholder_mail')" label="Email" name="email" v-model="form.email"
-                v-on:change="removeFieldError" />
-
-            <ErrorMessage v-bind="formFieldErrorValidator.email" />
-        </div>
-        <div>
-            <Input label="Site" name="site" v-model="form.site" />
+            <Stepper :control="stepperControl" v-on:clickTab="onChangeStep"></Stepper>
         </div>
 
-        <div class="py-5">
-            <Button color="default" v-on:click="switchTabContact">
-                <svg class="w-4 h-4 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                    viewBox="0 0 14 10">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M1 5h12m0 0L9 1m4 4L9 9" />
-                </svg>
-            </Button>
-        </div>
-    </div>
-    <div v-else-if="isStepContactSelected">
-        <div class="py-5">
-            <Input :placeholder="$t('placeholder_phone')" :label="$t('phone')" name="phone" v-model="form.phone" v-maska
-                :data-maska="$t('mask_phone')" />
-        </div>
+        <div v-if="isStepInitialSelected">
+            <div>
+                <Input :placeholder="$t('placeholder_name')" v-model="form.name" :label="$t('name')" name="name"
+                    v-on:change="removeFieldError" />
+                <ErrorMessage v-bind="formFieldErrorValidator.name" />
+            </div>
+            <div class="py-5">
+                <Input :placeholder="$t('placeholder_document')" :label="$t('document')" name="document"
+                    v-model="form.document" v-maska :data-maska="$t('mask_document')" />
+            </div>
+            <div>
+                <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    {{ $t('description') }}
+                </label>
+                <textarea name="description" rows="4" v-model="form.description" v-on:change="removeFieldError"
+                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    :placeholder="$t('placeholder_description_ngos')" />
 
-        <div>
-            <Input :placeholder="$t('placeholder_adress')" :label="$t('adress')" name="street" v-model="form.address.street"
-                v-on:change="removeFieldError" />
-
-            <ErrorMessage v-bind="formFieldErrorValidator.street" />
-        </div>
-
-        <div class="sm:flex py-5">
-            <div class="md:w-2/4 sm:mr-4 pb-5 sm:py-0">
-                <Input :placeholder="$t('placeholder_number')" name="number" v-model="form.address.number"
+                <ErrorMessage v-bind="formFieldErrorValidator.description" />
+            </div>
+            <div class="py-5">
+                <Input :placeholder="$t('placeholder_mail')" label="Email" name="email" v-model="form.email"
                     v-on:change="removeFieldError" />
 
-                <ErrorMessage v-bind="formFieldErrorValidator.number" />
+                <ErrorMessage v-bind="formFieldErrorValidator.email" />
             </div>
-            <div class="md:w-2/4">
-                <Input :placeholder="$t('placeholder_complement')" name="complement" v-model="form.address.complement" />
+            <div>
+                <Input label="Site" name="site" v-model="form.site" />
             </div>
-        </div>
 
-        <div>
-            <p class="pb-2">Imagem de perfil</p>
-            <ImageUpload v-on:change-image="onChangeImageUploaded" :show-gallery="true" :rounded="true" :logo="form.logo"
-                :id="'profile-image'">
-                <label for="profile-image">
-                    <div class="flex py-2 items-center justify-center h-20 w-20 rounded-full bg-stone-800">
-                        <span class="text-white font-bold text-2xl">
-                            <font-awesome-icon :icon="['fas', 'plus']" />
-                        </span>
-                    </div>
-                </label>
-            </ImageUpload>
+            <div class="py-5">
+                <Button color="default" v-on:click="switchTabContact">
+                    <svg class="w-4 h-4 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 14 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M1 5h12m0 0L9 1m4 4L9 9" />
+                    </svg>
+                </Button>
+            </div>
         </div>
-        <div class="py-10">
-            Galeria de imagens
-            <ImageUpload v-on:change-image="onChangeListPublicImagesUploaded" :logo="form.publicImages" :show-gallery="true"
-                v-on:remove-image="removeImage" :id="'gallery-images'" :image-prop="'image'">
-                <label for="gallery-images">
-                    <div class="flex py-2 items-center justify-center h-20 w-20 bg-stone-800">
-                        <span class="text-white font-bold text-2xl">
-                            <font-awesome-icon :icon="['fas', 'plus']" />
-                        </span>
-                    </div>
-                </label>
-            </ImageUpload>
-        </div>
-        <div>
-            <Button color="light" v-on:click="switchTabInit">Voltar</Button>&nbsp;
-            <Button color="default" v-on:click="saveForm">Cadastrar</Button>
+        <div v-else-if="isStepContactSelected">
+            <div class="py-5">
+                <Input :placeholder="$t('placeholder_phone')" :label="$t('phone')" name="phone" v-model="form.phone" v-maska
+                    :data-maska="$t('mask_phone')" />
+            </div>
+
+            <div>
+                <Input :placeholder="$t('placeholder_adress')" :label="$t('adress')" name="street"
+                    v-model="form.address.street" v-on:change="removeFieldError" />
+
+                <ErrorMessage v-bind="formFieldErrorValidator.street" />
+            </div>
+
+            <div class="sm:flex py-5">
+                <div class="md:w-2/4 sm:mr-4 pb-5 sm:py-0">
+                    <Input :placeholder="$t('placeholder_number')" name="number" v-model="form.address.number"
+                        v-on:change="removeFieldError" />
+
+                    <ErrorMessage v-bind="formFieldErrorValidator.number" />
+                </div>
+                <div class="md:w-2/4">
+                    <Input :placeholder="$t('placeholder_complement')" name="complement"
+                        v-model="form.address.complement" />
+                </div>
+            </div>
+
+            <div>
+                <p class="pb-2">Imagem de perfil</p>
+                <ImageUpload v-on:change-image="onChangeImageUploaded" :show-gallery="true" :rounded="true"
+                    :logo="form.logo" :id="'profile-image'">
+                    <label for="profile-image">
+                        <div class="flex py-2 items-center justify-center h-20 w-20 rounded-full bg-stone-800">
+                            <span class="text-white font-bold text-2xl">
+                                <font-awesome-icon :icon="['fas', 'plus']" />
+                            </span>
+                        </div>
+                    </label>
+                </ImageUpload>
+            </div>
+            <div class="py-2">
+                Galeria de imagens
+                <ImageUpload v-on:change-image="onChangeListPublicImagesUploaded" :logo="form.publicImages"
+                    :show-gallery="true" v-on:remove-image="removeImage" :id="'gallery-images'" :image-prop="'image'">
+                    <label for="gallery-images">
+                        <div class="flex py-2 items-center justify-center h-20 w-20 bg-stone-800">
+                            <span class="text-white font-bold text-2xl">
+                                <font-awesome-icon :icon="['fas', 'plus']" />
+                            </span>
+                        </div>
+                    </label>
+                </ImageUpload>
+            </div>
+            <div>
+                <Button color="light" v-on:click="switchTabInit">Voltar</Button>&nbsp;
+                <Button color="default" v-on:click="saveForm">Cadastrar</Button>
+            </div>
         </div>
     </div>
 </template>

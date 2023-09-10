@@ -12,5 +12,6 @@ export default class InstitutionModel {
     logo: string = '';
     publicImages: Array<InstitutionImageModel> = [];
     deletedPublicImages: Array<number> = [];
+    role: string = '';
     address: AdressModel = new AdressModel();
 }

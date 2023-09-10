@@ -1,7 +1,7 @@
 <script setup>
 import { Input, Button } from 'flowbite-vue'
-import { defineEmits, watch } from 'vue'
-import FilesFormat from '../helpers/format/FilesFormat';
+import { defineEmits } from 'vue'
+import FilesFormat from '../helpers/format/FilesFormat'
 
 const props = defineProps({
     logo: File | Array | String,
@@ -10,6 +10,7 @@ const props = defineProps({
     id: 'dropzone-file',
     imageProp: '',
 });
+
 
 const emit = defineEmits(['changeImage'])
 const logoPreview = ref('')
@@ -66,26 +67,31 @@ const removeImage = (index) => {
             <slot></slot>
             <input :id="props.id" type="file" class="hidden" v-on:change="getImage" :multiple="isMultiple" />
             <div v-if="isMultiple && props.showGallery" class="ml-2 flex">
-                <div class="overflow-x-auto flex w-full max-w-vw">
-                    <div v-for="(img, i) in props.logo" class="mr-2 img-gallery-md w-full" @mouseover="onHoverImage(i)"
-                        @mouseleave="onLeaveImage(i)">
+                <perfect-scrollbar>
+                    <div class="flex w-full max-w-vw" :id="props.id + 'ContainerScrollBar'">
+                        <div v-for="(img, i) in props.logo" class="mr-2 img-gallery-md w-full" 
+                            @mouseover="onHoverImage(i)"
+                            @mouseleave="onLeaveImage(i)"
+                            @touchstart="onHoverImage(i)"
+                            @touchend="onLeaveImage(i)">
 
-                        <div class="inline-block w-full">
-                            <img class="w-full rounded max-h-24 h-56" :class="{ 'rounded-full': props.rounded }" 
-                                :src="imageProp ? img[imageProp] : img"
-                                v-if="imageHover.index === null || (imageHover.index !== null && imageHover.index !== i)" />
+                            <div class="inline-block w-full">
+                                <img class="rounded max-h-24 h-56" :class="{ 'rounded-full': props.rounded }"
+                                    :src="imageProp ? img[imageProp] : img"
+                                    v-if="imageHover.index === null || (imageHover.index !== null && imageHover.index !== i)" />
 
-                            <div class="flex flex-col justify-center items-center w-full rounded max-h-24 h-56" v-else
-                                v-on:click="removeImage(i)">
-                                <div class="flex items-center justify-center h-full w-full bg-red-800">
-                                    <span class="text-white font-bold text-2xl">
-                                        <font-awesome-icon :icon="['far', 'trash-can']" />
-                                    </span>
+                                <div class="flex flex-col justify-center items-center w-full max-h-24 h-56" v-else
+                                    v-on:click="removeImage(i)">
+                                    <div class="flex items-center justify-center h-full w-full bg-red-800 rounded">
+                                        <span class="text-white font-bold text-2xl">
+                                            <font-awesome-icon :icon="['far', 'trash-can']" />
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </perfect-scrollbar>
             </div>
         </div>
         <Button color="red" class="mt-2" v-on:click="clearLogo" v-if="!isMultiple && props.logo">
@@ -100,3 +106,9 @@ const removeImage = (index) => {
         </Button>&nbsp;
     </div>
 </template>
+
+<style scoped> 
+.ps {
+    max-width: 70vw;
+}
+</style>

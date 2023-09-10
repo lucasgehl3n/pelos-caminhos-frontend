@@ -3,6 +3,7 @@ import Constants from '../constants';
 import InstitutionModel from '../structures/Models/InstitutionModel';
 import InstitutionImageModel from '../structures/Models/InstitutionImageModel';
 import { serialize } from 'object-to-formdata';
+import InstitutionFilter from '../structures/Filters/InstitutionFilter';
 
 const _mapPublicImagesToFormData = async (publicImages: InstitutionImageModel[], formData: FormData) => {
     for (let i = 0; i < publicImages.length; i++) {
@@ -50,6 +51,16 @@ export default class InstitutionGateway {
     static async Get(id: string) {
         try {
             const res = await axios.get(`${Constants.API_URL}/institution/${id}`,
+                { withCredentials: true }
+            );
+            return res;
+        } catch (error) {
+            return error;
+        }
+    }
+    static async List(pageDynamicRendering: number, filter: InstitutionFilter = new InstitutionFilter()) {
+        try {
+            const res = await axios.get(`${Constants.API_URL}/institution?page=${pageDynamicRendering}&${filter.toUrl()}`,
                 { withCredentials: true }
             );
             return res;
