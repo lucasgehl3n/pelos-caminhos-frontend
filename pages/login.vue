@@ -52,6 +52,10 @@ async function OnSubmitLogin() {
         }
     }
 }
+
+function goToRegisterAccount() {
+    window.location.href = "/create-account";
+}
 </script>
 
 <template>
@@ -82,7 +86,7 @@ async function OnSubmitLogin() {
                             </p>
                         </div>
                         <Button size="lg" class="w-full" v-on:click="OnSubmitLogin">Entrar</Button>
-                        <p class="text-sm font-light">
+                        <p class="text-sm font-light" v-on:click="goToRegisterAccount">
                             <a href="#" class="font-medium hover:underline dark:text-primary-500">{{ $t('sign_up') }}</a>
                         </p>
                     </div>

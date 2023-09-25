@@ -9,6 +9,7 @@ const props = defineProps({
     showGallery: true,
     id: 'dropzone-file',
     imageProp: '',
+    showDeleteButton: true,
 });
 
 
@@ -101,7 +102,7 @@ const removeImage = (index) => {
 
     <div v-else-if="props.showGallery">
         <img class="w-20 h-20 rounded" :class="{ 'rounded-full': props.rounded }" :src="props.logo" />
-        <Button color="red" class="mt-2" v-on:click="clearLogo">
+        <Button color="red" class="mt-2" v-on:click="clearLogo" v-if="showDeleteButton">
             <font-awesome-icon :icon="['far', 'trash-can']" />
         </Button>&nbsp;
     </div>

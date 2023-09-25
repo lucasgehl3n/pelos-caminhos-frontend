@@ -29,7 +29,7 @@ const hasItemsOnList = computed(() => props.list && props.list.length > 0);
         <InfiniteLoading ref="infiniteLoading" @infinite="props.infiniteLoading.infiniteHandler"
             :target="props.infiniteLoading.target" :identifier="props.infiniteLoading.identifier" :distance="20">
             <template #complete>
-                <div v-if="!hasItemsOnList && !time">
+                <div v-if="!hasItemsOnList">
                     <NoResultsFound></NoResultsFound>
                 </div>
                 <template v-else>

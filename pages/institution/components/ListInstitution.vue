@@ -36,11 +36,11 @@ let target = ref(".scrollable");
                     </div>
                     <div class="w-1/4 items-end flex flex-col">
                         <template v-if="entity.role == Roles.Administrator">
-                            <img src="~/assets/svg/admin.svg" alt="Administrador" class="w-6 h-6" />
+                            <img src="~/assets/svg/admin.svg" :alt="$t('admin')" class="w-6 h-6" />
                         </template>
 
                         <template v-else-if="entity.role == Roles.Volunteer">
-                            <img src="~/assets/svg/hand.svg" alt="Volunteer" class="w-6 h-6" />
+                            <img src="~/assets/svg/hand.svg" :alt="$t('volunteer')" class="w-6 h-6" />
                         </template>
                     </div>
                 </div>

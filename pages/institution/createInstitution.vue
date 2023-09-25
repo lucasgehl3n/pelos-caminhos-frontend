@@ -11,6 +11,7 @@ import { reactive } from 'vue'
 import InstitutionModel from '../../structures/Models/InstitutionModel';
 import InstitutionGateway from '../../gateways/InstitutionGateway';
 import Modal from '../../components/modal.vue';
+import Breadcrumb from '../../components/breadcrumb.vue';
 import ProgressBarControl from '../../helpers/ProgressBarControl.ts'
 import deepcopy from 'deepcopy';
 
@@ -174,6 +175,23 @@ const
             showSuccessModal();
         }
     };
+
+const createEdit = computed(() => route.params.id ? t('edit') : t('create'));
+const breadcrumb = ref([
+    {
+        name: 'Home',
+        url: '/',
+        icon: 'home',
+    },
+    {
+        name: t('ngos'),
+        url: '/institution',
+    },
+    {
+        name: createEdit,
+        url: '/institution',
+    },
+]);
 </script>
 
 <template>
@@ -195,6 +213,10 @@ const
     </Modal>
 
     <div class="w-full sm:w-3/5">
+        <div class="pb-5">
+            <Breadcrumb :list-items="breadcrumb">
+            </Breadcrumb>
+        </div>
         <PageHeader :title="$t('ngo_registration')" :subtitle="$t('enter_details_to_get_started')"></PageHeader>
         <div class="py-5">
             <Stepper :control="stepperControl" v-on:clickTab="onChangeStep"></Stepper>

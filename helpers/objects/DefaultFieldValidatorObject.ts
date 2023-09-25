@@ -1,6 +1,12 @@
 import { createApp } from 'vue';
 export default class DefaultFieldValidatorObject {
-    static error: false;
-    static bodyMessage: '';
-    static titleMessage = '';
+    error: boolean;
+    bodyMessage: string;
+    titleMessage: string;
+
+    constructor(error:boolean = false, bodyMessage: string = '', titleMessage:string = '') {
+        this.error = error;
+        this.bodyMessage = bodyMessage;
+        this.titleMessage = titleMessage;
+    }
 }
