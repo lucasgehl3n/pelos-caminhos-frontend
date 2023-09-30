@@ -63,8 +63,6 @@ const mapPublicImages = computed(() => {
 })
 
 const showGalleryImage = (index) => {
-    debugger
-    //image.value = index;
     showGallery.value = true;
 }
 

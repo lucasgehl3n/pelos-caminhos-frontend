@@ -16,7 +16,6 @@ const qr = ref('');
 onMounted(() => {
     if (props.text) {
         qr.value = generateQR(props.text);
-        console.log(qr);
     }
 });
 </script>
