@@ -70,7 +70,7 @@ export default class InstitutionGateway {
     }
     static async List(pageDynamicRendering: number, filter: InstitutionFilter = new InstitutionFilter()) {
         try {
-            console.log(Constants.API_URL)
+            console.log(useRuntimeConfig().public.NODE_ENV)
             const res = await axios.get(`${Constants.API_URL}/institution?page=${pageDynamicRendering}&${filter.toUrl()}`,
                 { withCredentials: true }
             );

@@ -12,7 +12,7 @@ export default defineNuxtConfig({
     },
   },
   ssr: false,
-  devtools: { enabled: true },
+  devtools: { enabled: process.env.NODE_ENV === 'development' },
   modules: [
     '@nuxtjs/device',
     '@pinia/nuxt',
@@ -28,5 +28,11 @@ export default defineNuxtConfig({
     '~/plugins/scrollBar',
     '~/plugins/infiniteScroll',
   ],
+  runtimeConfig: {
+    public: {
+      BACKEND_URL: process.env.BACKEND_URL,
+      NODE_ENV: process.env.NODE_ENV,
+    },
+  },
   pages: true,
 })
