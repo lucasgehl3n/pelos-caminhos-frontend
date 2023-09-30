@@ -58,6 +58,16 @@ export default class InstitutionGateway {
             return error;
         }
     }
+    static async GetPublicInfos(id: string) {
+        try {
+            const res = await axios.get(`${Constants.API_URL}/public/institution/${id}`,
+                { withCredentials: true }
+            );
+            return res;
+        } catch (error) {
+            return error;
+        }
+    }
     static async List(pageDynamicRendering: number, filter: InstitutionFilter = new InstitutionFilter()) {
         try {
             const res = await axios.get(`${Constants.API_URL}/institution?page=${pageDynamicRendering}&${filter.toUrl()}`,

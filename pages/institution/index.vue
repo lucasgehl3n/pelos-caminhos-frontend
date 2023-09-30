@@ -120,6 +120,9 @@ const loadData = async (state) => {
             state.loaded();
         }
     }
+    else{
+        state.complete();
+    }
     showLoading.value = false;
 }
 

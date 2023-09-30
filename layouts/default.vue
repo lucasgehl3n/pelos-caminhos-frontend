@@ -1,5 +1,5 @@
 <script setup>
-import bottomNavigator from '/pages/bottom-navigator.vue';
+import bottomNavigator from '../components/bottom-navigator.vue';
 import desktopSidebar from '../components/desktop-sidebar.vue';
 import axios from 'axios';
 axios.defaults.withCrendentails = true;

@@ -1,18 +1,13 @@
 <script setup>
-import InstitutionModel from "../structures/Models/InstitutionModel";
 import InfiniteLoading from "v3-infinite-loading";
 import "v3-infinite-loading/lib/style.css";
 import NoResultsFound from "../components/no-results-found.vue";
-const router = useRouter();
 
 const props = defineProps({
-    list: Array[InstitutionModel],
+    list: [],
     infiniteLoading: Object,
 });
 
-const redirectToDetail = (institution) => {
-    router.push({ path: `/institution/${institution.id}` })
-}
 
 const hasItemsOnList = computed(() => props.list && props.list.length > 0);
 </script>
@@ -20,7 +15,7 @@ const hasItemsOnList = computed(() => props.list && props.list.length > 0);
 <template :slot-scope="{entity}">
     {{ props.showLoading }}
     <perfect-scrollbar class="scrollable w-full">
-        <div v-for="(entity, i) in props.list" v-on:click="redirectToDetail(entity)" v-show="hasItemsOnList"
+        <div v-for="(entity, i) in props.list" v-show="hasItemsOnList"
             class="flex bg-white border border-gray-100 shadow dark:bg-gray-800 dark:border-gray-700 w-full"
             :class="{ 'rounded-t-md': i == 0, 'rounded-b-md': i == props.list.length - 1 }">
             <slot :entity="entity">
