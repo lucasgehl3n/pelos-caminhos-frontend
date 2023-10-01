@@ -9,6 +9,9 @@
     "postinstall": "nuxt prepare",
     "start": "nuxt start"
   },
+  "engines": {
+    "node": "18"
+  },
   "dependencies": {
     "@capacitor/android": "^5.2.2",
     "@capacitor/cli": "^5.2.2",
