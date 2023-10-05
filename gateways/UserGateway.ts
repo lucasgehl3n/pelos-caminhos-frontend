@@ -30,7 +30,6 @@ const _mapInterestsToFormData = (interests: InterestModel[], formData: FormData)
 export default class UserGateway {
     static async Save(model: UserModel) {
         try {
-            debugger
             const modelWithoutArrays = { ...model };
             delete modelWithoutArrays.cities;
             delete modelWithoutArrays.interests;
@@ -48,7 +47,6 @@ export default class UserGateway {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     },
-                    //withCredentials: true
                 }
             );
             return res;

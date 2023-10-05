@@ -114,19 +114,18 @@ export default class FieldValidatorForm {
             } else {
                 fieldError.error = false;
             }
-
-            if (hasErrorOnInitTab) {
-                context.switchTabInit();
-                return false;
-            }
-
-            if (hasErrorOnContactTab) {
-                context.switchTabContact();
-                return false;
-            }
-
             return true;
         });
+
+        if (hasErrorOnInitTab) {
+            context.switchTabInit();
+            return false;
+        }
+
+        if (hasErrorOnContactTab) {
+            context.switchTabContact();
+            return false;
+        }
         return true;
     }
 
