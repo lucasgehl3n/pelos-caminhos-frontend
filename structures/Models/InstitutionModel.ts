@@ -2,7 +2,7 @@ import AdressModel from "./AdressModel";
 import InstitutionImageModel from "./InstitutionImageModel";
 
 export default class InstitutionModel {
-    id: number | null = null;
+    id: number = 0;
     name: string = '';
     document: string = '';
     description: string = '';
