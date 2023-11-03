@@ -60,7 +60,7 @@ const redirectToDetail = (entity) => {
                             </template>
                         </div>
                     </div>
-                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ entity.description }}</p>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400" v-html="entity.description"></p>
                 </div>
             </div>
         </template>

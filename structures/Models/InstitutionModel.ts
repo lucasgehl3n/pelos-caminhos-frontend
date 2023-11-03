@@ -1,5 +1,6 @@
 import AdressModel from "./AdressModel";
 import InstitutionImageModel from "./InstitutionImageModel";
+import TreatmentModel from "./TreatmentModel";
 
 export default class InstitutionModel {
     id: number = 0;

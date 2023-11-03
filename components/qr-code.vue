@@ -1,25 +1,42 @@
 <script setup>
-import QRCode from 'qrcode';
+import QRCode from "qrcode";
+import { Button } from "flowbite-vue";
+
 const props = defineProps({
-    text: String,
+  text: String,
 });
 
-const generateQR = async text => {
-    try {
-        console.log(await QRCode.toDataURL(text))
-    } catch (err) {
-        console.error(err)
-    }
-}
+const generateQR = async (text) => {
+  try {
+    return await QRCode.toDataURL(text);
+  } catch (err) {
+    console.error(err);
+  }
+};
 
-const qr = ref('');
+const qr = ref("");
 onMounted(() => {
-    if (props.text) {
-        qr.value = generateQR(props.text);
-    }
+  if (props.text) {
+    generateQR(props.text).then((response) => {
+      if (response) qr.value = response;
+    });
+  }
 });
+
+const share = () => {
+  if (navigator.share) {
+    navigator
+      .share({
+        title: "Pelos caminhos",
+        text: "Instituição tal",
+        url: props.text,
+      })
+      .catch((error) => console.log("Error sharing", error));
+  }
+};
 </script>
 
 <template>
-    <img src="qr" />
+  <img :src="qr" />
+  <Button color="default" v-on:click="share">{{ $t("share") }}</Button>
 </template>

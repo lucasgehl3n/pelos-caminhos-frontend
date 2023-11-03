@@ -54,4 +54,15 @@ export default class UserGateway {
             return error;
         }
     }
+    
+    static async List(search: string) {
+        try {
+            const res = await axios.get(`${Constants.API_URL}/user?search=${search}`,
+                { withCredentials: true },
+            );
+            return res;
+        } catch (error: any) {
+            return error;
+        }
+    }
 }
