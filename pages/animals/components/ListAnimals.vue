@@ -75,13 +75,13 @@ const redirectToDetail = (entity) => {
                   class="text-sm text-gray-700 dark:text-gray-400 w-full"
                   v-if="entity.age"
                 >
-                  {{ entity.age > 1 ? $t("years") : $t("year") }}
+                  {{ entity.age }} {{ entity.age > 1 ? $t("years") : $t("year") }}
                 </p>
                 <p
                   class="font-normal text-gray-700 dark:text-gray-400 w-full"
                   v-if="entity.weight"
                 >
-                  {{ entity.weight > 1 ? $t("KGs") : $t("KG") }}
+                {{ entity.weight }} {{ entity.weight > 1 ? $t("KGs") : $t("KG") }}
                 </p>
               </div>
             </div>
