@@ -117,6 +117,21 @@ export default defineI18nConfig(() => ({
             status: 'Status',
             situation: 'Situation',
             temporary_home: 'Temporary home',
+            selected_home: 'Selected home',
+            home_temporaries: 'Temporary homes',
+            initial_date: 'Initial date',
+            final_date: 'Final date',
+            already_have_an_account: 'Already have an account',
+            add_treatment: 'Add treatment',
+            profile_image: 'Profile image',
+            images_gallery: 'Images gallery',
+            how_volunteers_can_help: 'How volunteers can help?',
+            new: 'New',
+            responsible: 'Responsible',
+            email: 'E-mail',
+            member_since: 'Member since',
+            created_at: 'Created at',
+            size_tooltip: 'Mini: Until 5kg, Small: Until 10kg, Medium: Until 15kg, Big: Until 20kg',
         },
         br: {
             password: 'Senha',
@@ -247,6 +262,8 @@ export default defineI18nConfig(() => ({
             responsible: 'Responsável',
             email: 'E-mail',
             member_since: 'Membro desde',
+            created_at: 'Criado em',
+            size_tooltip: 'Mini: Até 5kg, Pequeno: Até 10kg, Médio: Até 15kg, Grande: Até 20kg',
         }
     }
 }))

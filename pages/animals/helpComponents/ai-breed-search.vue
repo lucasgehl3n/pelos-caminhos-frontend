@@ -5,6 +5,7 @@ import FilesFormat from "../../../helpers/format/FilesFormat";
 
 const props = defineProps({
   showModal: false,
+  filter: Object,
 });
 
 const emit = defineEmits(["closeModal", "searchImage", "removeSearchImage"]);
@@ -35,12 +36,21 @@ const removeCurrentImage = () => {
   selectedImage.value = null;
   emit("removeSearchImage");
 };
+
+watch(
+  () => props.filter.image,
+  (newValue) => {
+    if (!newValue) {
+      selectedImage.value = null;
+    }
+  }
+);
 </script>
 
 <template>
   <Modal
     size="2xl"
-    :title="'Pesquisa por reconhecimento de imagem'"
+    :title="'Procurar com uma imagem'"
     :show-modal="showModal"
   >
     <template v-slot:body>
@@ -71,7 +81,7 @@ const removeCurrentImage = () => {
                   />
                 </svg>
                 <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">
-                  <b>{{ $t("drag_and_drop") }}</b>
+                  <b>Selecionar um arquivo</b>
                 </p>
                 <p class="text-xs text-gray-500 dark:text-gray-400">
                   {{ $t("jpeg_and_png_message") }}

@@ -36,6 +36,7 @@ import { QuillEditor } from "@vueup/vue-quill";
 import ProgressBarControl from "../../helpers/ProgressBarControl.ts";
 import "@vueup/vue-quill/dist/vue-quill.snow.css";
 import GenericError from "../../components/generic-error.vue";
+import { initFlowbite } from "flowbite";
 
 const { t } = useI18n();
 const route = useRoute();
@@ -323,6 +324,7 @@ const isLoaded = ref(false);
 
 onMounted(() => {
   findData();
+  initFlowbite();
 });
 
 const goToPublicProfile = () => {};
@@ -838,7 +840,7 @@ const closeModalGenericError = () => {
           <div class="block sm:flex w-full">
             <div class="flex w-full">
               <BadgeFilter
-                :title="$t('mini') + $t('until_5kg')"
+                :title="$t('mini')"
                 :clicked="form.size === 1"
                 v-on:click="selectSize(1)"
                 class="sm:w-full"
@@ -846,26 +848,41 @@ const closeModalGenericError = () => {
               </BadgeFilter>
 
               <BadgeFilter
-                :title="$t('small') + $t('until_10kg')"
+                :title="$t('small')"
                 :clicked="form.size === 2"
                 v-on:click="selectSize(2)"
                 class="sm:w-full"
               >
               </BadgeFilter>
               <BadgeFilter
-                :title="$t('medium') + $t('until_15kg')"
+                :title="$t('medium')"
                 :clicked="form.size === 3"
                 v-on:click="selectSize(3)"
                 class="sm:w-full"
               >
               </BadgeFilter>
               <BadgeFilter
-                :title="$t('big') + $t('until_20kg')"
+                :title="$t('big')"
                 :clicked="form.size === 4"
                 v-on:click="selectSize(4)"
                 class="sm:w-full"
               >
               </BadgeFilter>
+
+              <a href="#" data-tooltip-target="tooltip-default">
+                <font-awesome-icon
+                  icon="question-circle"
+                  class="text-gray-500 dark:text-gray-400"
+                />
+              </a>
+              <div
+                id="tooltip-default"
+                role="tooltip"
+                class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+              >
+                {{ $t("size_tooltip") }}
+                <div class="tooltip-arrow" data-popper-arrow></div>
+              </div>
             </div>
           </div>
           <ErrorMessage v-bind="formFieldErrorValidator.size" />
@@ -1089,7 +1106,7 @@ const closeModalGenericError = () => {
             <label
               class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
             >
-             {{ $t("observation") }}
+              {{ $t("observation") }}
             </label>
             <quill-editor
               theme="snow"

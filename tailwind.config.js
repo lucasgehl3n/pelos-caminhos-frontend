@@ -8,7 +8,8 @@ module.exports = {
     "./nuxt.config.{js,ts}",
     "./app.vue",
     'node_modules/flowbite-vue/**/*.{js,jsx,ts,tsx}',
-    'node_modules/flowbite/**/*.{js,jsx,ts,tsx}'
+    'node_modules/flowbite/**/*.{js,jsx,ts,tsx}',
+    "./node_modules/flowbite/**/*.js",
   ],
   plugins: [
       require('flowbite/plugin')
@@ -16,5 +17,10 @@ module.exports = {
   theme: {
     extend: {},
   },
+  safelist: [
+    {
+      pattern: /bg-+/, // 👈  This includes bg of all colors and shades
+    },
+  ],
 }
 

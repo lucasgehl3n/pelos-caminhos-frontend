@@ -38,5 +38,7 @@ const share = () => {
 
 <template>
   <img :src="qr" />
-  <Button color="default" v-on:click="share">{{ $t("share") }}</Button>
+  <div class="w-full text-center">
+    <Button color="default" v-on:click="share">{{ $t("share") }}</Button>
+  </div>
 </template>

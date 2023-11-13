@@ -13,10 +13,9 @@ const hasItemsOnList = computed(() => props.list && props.list.length > 0);
 </script>
 
 <template :slot-scope="{entity}">
-    {{ props.showLoading }}
     <perfect-scrollbar class="scrollable w-full">
         <div v-for="(entity, i) in props.list" v-show="hasItemsOnList"
-            class="flex bg-white border border-gray-100 shadow dark:bg-gray-800 dark:border-gray-700 w-full"
+            class="flex bg-white border border-gray-100 shadow w-full"
             :class="{ 'rounded-t-md': i == 0, 'rounded-b-md': i == props.list.length - 1 }">
             <slot :entity="entity">
             </slot>

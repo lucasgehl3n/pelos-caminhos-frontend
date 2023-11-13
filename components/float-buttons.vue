@@ -40,6 +40,7 @@ const executePrimaryAction = () => {
       >
         <font-awesome-icon :icon="['fas', props.secondaryIcon]" class="text-3xl" />
         <span class="sr-only">Home</span>
+        Perfil público
       </button>
       <div
         id="tooltip-home"

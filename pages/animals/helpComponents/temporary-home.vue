@@ -154,7 +154,7 @@ const emitUpdateForwardingDate = (event) => {
       class="pt-2"
     >
       {{ $t('selected_home') }}:
-      <div class="w-min md:w-auto">
+      <div class="min-w-min md:w-auto">
         <BadgeFilter
           :title="props.form.temporaryHome.name"
           :clicked="true"
@@ -196,7 +196,7 @@ const emitUpdateForwardingDate = (event) => {
         class="my-2 block w-full p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
       >
         <div class="flex">
-          <div class="py-2 w-11/12">{{ $('home_temporaries') }}</div>
+          <div class="py-2 w-11/12">{{ $t('home_temporaries') }}</div>
           <div class="ml-2 w-1/12 flex-end" v-on:click="reset">
             <font-awesome-icon :icon="['fas', 'times']" />
           </div>

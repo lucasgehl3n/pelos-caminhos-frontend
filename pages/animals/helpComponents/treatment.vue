@@ -62,11 +62,11 @@ const addTreatment = () => {
           class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
         >
           <tr>
-            <th scope="col" class="px-6 py-3">{{ $('name') }}</th>
-            <th scope="col" class="px-6 py-3">{{ $('details') }}</th>
-            <th scope="col" class="px-6 py-3">{{ $('initial_date') }}</th>
-            <th scope="col" class="px-6 py-3">{{ $('final_date') }}</th>
-            <th scope="col" class="px-6 py-3">{{ $('status') }}</th>
+            <th scope="col" class="px-6 py-3">{{ $t('name') }}</th>
+            <th scope="col" class="px-6 py-3">{{ $t('details') }}</th>
+            <th scope="col" class="px-6 py-3">{{ $t('initial_date') }}</th>
+            <th scope="col" class="px-6 py-3">{{ $t('final_date') }}</th>
+            <th scope="col" class="px-6 py-3">{{ $t('status') }}</th>
             <th scope="col" class="px-6 py-3">
               <span class="sr-only">Edit</span>
             </th>
@@ -93,7 +93,7 @@ const addTreatment = () => {
                 href="#"
                 class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                 v-on:click="openModal(treatment)"
-                >{{ $('edit') }}</a
+                >{{ $t('edit') }}</a
               >
             </td>
           </tr>

@@ -30,7 +30,7 @@ const sort = (value) => {
             </svg>
         </template>
         <template #suffix>
-            <dropdown :text="'Ordenar por'" class="block sm:pl-5 sm:w-auto pl-2 pr-2">
+            <dropdown :text="$device.isMobile ? 'Ordem' : $t('order_by')" class="block sm:pl-5 sm:w-auto pl-2 pr-2">
                 <list-group>
                     <list-group-item @click="sort('name-az')">
                         <template #prefix>

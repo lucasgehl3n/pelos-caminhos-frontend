@@ -4,12 +4,12 @@ import InterestModel from "./InterestModel";
 
 export default class UserModel {
     id: number = 0;
-    name: string = 'Lucas Gehlen';
-    document: string = '036.149.870-51';
-    password: string = 'teste';
-    birthdayDate: string = '17/03/2000';
-    email: string = 'contato.lucasgehlen@gmail.com';
-    phone: string = '(54) 99924-3818';
+    name: string = '';
+    document: string = '';
+    password: string = '';
+    birthdayDate: string = '';
+    email: string = '';
+    phone: string = '';
     address: AdressModel = new AdressModel();
     interests?: InterestModel[] = [];
     cities?: CityModel[] = [];

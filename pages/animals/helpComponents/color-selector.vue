@@ -29,6 +29,7 @@ onMounted(() => {
 const classList = (color) => {
   const ringClass = color.id === props.form.idColor ? "ring-blue-600 border-2" : "ring-gray-300";
   const classes = [ringClass, color.class];
+  console.log(classes);
   return classes;
 };
 </script>

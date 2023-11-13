@@ -318,7 +318,7 @@ const save = async () => {
               <label
                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
               >
-                {{ $t("details") }}}
+                {{ $t("details") }}
               </label>
               <quill-editor
                 theme="snow"

@@ -179,6 +179,15 @@ const closeModalAi = () => {
 
   <perfect-scrollbar class="scrollable w-full psBadges">
     <div class="flex w-full whitespace-nowrap">
+      <div class="pr-2 sm:pr-0 w-auto" v-if="filter.image">
+        <BadgeFilter
+          :title="'Procurar com uma imagem'"
+          :number="counters.bounded"
+          @click="removeSearchImage"
+          :clicked="true"
+        >
+        </BadgeFilter>
+      </div>
       <div class="pr-2 sm:pr-0 w-auto">
         <BadgeFilter
           :title="$t('my_bounded')"
@@ -221,6 +230,7 @@ const closeModalAi = () => {
 
   <AiBreedSearch
     :showModal="showModalImageAi"
+    :filter="filter"
     v-on:searchImage="searchImage"
     v-on:removeSearchImage="removeSearchImage"
     v-on:closeModal="closeModalAi"

@@ -257,7 +257,7 @@ const goToPublicProfile = () => {
           <Stepper :control="stepperControl" v-on:clickTab="onChangeStep"></Stepper>
         </div>
       </div>
-      <div v-if="form.id">
+      <div v-if="form.id" class="pb-5 md:pb-0">
         <Button color="light" v-on:click="goToPublicProfile">Ver perfil público</Button>
       </div>
     </div>
@@ -388,6 +388,7 @@ const goToPublicProfile = () => {
           :rounded="true"
           :logo="form.logo"
           :id="'profile-image'"
+          :showDeleteButton="true"
         >
           <label for="profile-image">
             <div
@@ -401,7 +402,7 @@ const goToPublicProfile = () => {
         </ImageUpload>
       </div>
       <div class="py-2">
-       {{ $t('images_gallery')}}
+        {{ $t('images_gallery')}}
         <ImageUpload
           v-on:change-image="onChangeListPublicImagesUploaded"
           :logo="form.publicImages"

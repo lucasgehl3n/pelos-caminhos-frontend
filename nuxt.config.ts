@@ -19,7 +19,6 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
   ],
   i18n: {
-    /* module options */
   },
   plugins: [
     '~/plugins/axios',
