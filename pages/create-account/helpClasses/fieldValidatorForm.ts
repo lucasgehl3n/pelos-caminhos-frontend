@@ -87,14 +87,17 @@ export default class FieldValidatorForm {
         const document = this.form.value.document;
         if (document) {
             const isValid = cpf.isValid(document);
+            const field = context.fieldsToValidate.value["document"];
             if (!isValid) {
-                context.fieldsToValidate.value.document.error = true;
-                context.fieldsToValidate.value.titleMessage = "CPF inválido";
-                context.fieldsToValidate.value.bodyMessage = "Documento não atende aos critérios de validação!";
+                field.fieldError.error = true;
+                field.fieldError.titleMessage = "CPF inválido";
+                field.fieldError.bodyMessage = "Documento não atende aos critérios de validação!";
+                return false;
             } else {
-                context.fieldsToValidate.value.document.error = false;
-                context.fieldsToValidate.value.document.titleMessage = "";
-                context.fieldsToValidate.value.document.fieldError.bodyMessage = "";
+                field.fieldError.error = false;
+                field.fieldError.titleMessage = "";
+                field.fieldError.fieldError.bodyMessage = "";
+                return true;
             }
         }
     };
@@ -141,6 +144,11 @@ export default class FieldValidatorForm {
 
         if (hasErrorOnContactTab) {
             context.switchTabContact();
+            return false;
+        }
+
+        if(!context.validateDocument()) {
+            context.switchTabInit();
             return false;
         }
         return true;

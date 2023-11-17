@@ -135,7 +135,7 @@ const redirectToLogin = () => {
           v-maska
           :data-maska="$t('mask_personal_document')"
           v-on:change="props.fieldValidatorForm.removeFieldError"
-          v-on:blur="validateDocument"
+          v-on:blur="props.fieldValidatorForm.validateDocument"
         />
         <ErrorMessage v-bind="props.formFieldErrorValidator.document" />
         <p
