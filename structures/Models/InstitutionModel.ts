@@ -3,7 +3,7 @@ import InstitutionImageModel from "./InstitutionImageModel";
 import TreatmentModel from "./TreatmentModel";
 
 export default class InstitutionModel {
-    id: number | null = null;
+    id: number | string = '';
     name: string = '';
     document: string = '';
     description: string = '';

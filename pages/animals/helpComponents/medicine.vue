@@ -146,7 +146,7 @@ const removeFieldError = (e) => {
 };
 </script>
 <template>
-  <Button color="default" v-on:click="openModal()">Adicionar medicação/vacina</Button>
+  <Button color="default" v-on:click="openModal()">Adicionar Vacina / Medicação</Button>
   <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-10">
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
       <thead

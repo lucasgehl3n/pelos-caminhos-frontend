@@ -28,18 +28,24 @@ const showSuccessModal = () => {
 
 const saveForm = async () => {
   if (props.fieldValidatorForm.validateRequiredFields()) {
-    props.form.cities = [...props.citiesAdded];
-    const res = await UserGateway.Save(deepcopy(props.form));
-    if (res && res.data && (res.data.id || res.data.id === 0)) {
-      showSuccessModal();
-    } else {
+    if (validateDocument()) {
+      props.form.cities = [...props.citiesAdded];
+      const res = await UserGateway.Save(deepcopy(props.form));
+      if (res && res.data && (res.data.id || res.data.id === 0)) {
+        showSuccessModal();
+      } else {
         showModalError.value = true;
+      }
     }
   }
 };
 
 const closeModalGenericError = () => {
   showModalError.value = false;
+};
+
+const redirectToLogin = () => {
+  router.push({ path: "/login" });
 };
 </script>
 

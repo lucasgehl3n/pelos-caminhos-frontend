@@ -5,6 +5,7 @@ const emit = defineEmits(['closeModal'])
 const props = defineProps({
     showModal: false,
     title: '',
+    size: 'md'
 });
 
 const closeModal = () => {

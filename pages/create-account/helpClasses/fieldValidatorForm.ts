@@ -1,6 +1,7 @@
 import FieldValidatorInfos from "../../../helpers/objects/FieldValidatorInfos";
 import DefaultFieldValidatorObject from "../../../helpers/objects/DefaultFieldValidatorObject";
 import UserModel from "../../../structures/Models/UserModel";
+import { cpf } from 'cpf-cnpj-validator';
 
 export const formFieldErrorValidator = reactive({
     name: new DefaultFieldValidatorObject(),
@@ -81,6 +82,22 @@ export default class FieldValidatorForm {
             context.fieldsToValidate.value[e.target.name].fieldError.error = false;
         }
     }
+
+    validateDocument = () => {
+        const document = this.form.value.document;
+        if (document) {
+            const isValid = cpf.isValid(document);
+            if (!isValid) {
+                context.fieldsToValidate.value.document.error = true;
+                context.fieldsToValidate.value.titleMessage = "CPF inválido";
+                context.fieldsToValidate.value.bodyMessage = "Documento não atende aos critérios de validação!";
+            } else {
+                context.fieldsToValidate.value.document.error = false;
+                context.fieldsToValidate.value.document.titleMessage = "";
+                context.fieldsToValidate.value.document.fieldError.bodyMessage = "";
+            }
+        }
+    };
 
     validateRequiredFields() {
         let hasErrorOnInitTab = false;
