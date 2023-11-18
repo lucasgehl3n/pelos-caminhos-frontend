@@ -38,36 +38,6 @@ export default class AnimalModel {
     deletedImages: number[] = [];
     deletedAnimalAttachments: number[] = [];
     forwardingDate: string | undefined;
+    castrated!: boolean;
+    role!: number | undefined;
 }
-
-
-// export default class AnimalModel {
-//     id: number = 0;
-//     name: string = 'teste';
-//     species: number = 1;
-//     years: number = 1;
-//     collectionDate: string = '15/10/2023';
-//     collectionPlace: string = 'Sinimbu';
-//     size: number = 2;
-//     gender: number = 1;
-//     weight: number = 0; // pendente
-//     idColor: number = 1;
-//     idBreed: number | undefined = 1;
-//     breed: BreedModel | undefined;
-//     idSituation: number = 0;
-//     deathDate: string = '';
-//     deathDetail: string = '';
-//     adoptionDate: string = '';
-//     adoptionSolicitationDate: string = '';
-//     adoptionApprovalDate: string = '';
-//     observation: string = '';
-//     idTreatment: number | undefined;
-//     idBehavioralProfile: number | undefined = 34;
-//     treatment: TreatmentModel[] = [];
-//     idTemporaryHome: number | undefined;
-//     temporaryHome: EntityTemporaryHome | undefined;
-//     medicineAnimal: MedicineAnimal[] = [];
-//     images: AnimalImageModel[] = [];
-//     deletedImages: number[] = [];
-//     forwardingDate: string = '';
-// }

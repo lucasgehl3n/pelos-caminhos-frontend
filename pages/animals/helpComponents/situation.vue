@@ -42,14 +42,6 @@ const props = defineProps({
   form: AnimalModel,
 });
 
-const changeSituation = (situation) => {
-  situation.checked = !situation.checked;
-};
-
-const isClicked = (situation) => {
-  return situation.checked;
-};
-
 const updateSituation = (v) => {
   let option = v;
   if (props.form.idSituation === v) {

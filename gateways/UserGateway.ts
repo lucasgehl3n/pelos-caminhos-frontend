@@ -65,4 +65,15 @@ export default class UserGateway {
             return error;
         }
     }
+
+    static async DetailMenu(id: number) {
+        try {
+            const res = await axios.get(`${Constants.API_URL}/detailUser`,
+                { withCredentials: true },
+            );
+            return res;
+        } catch (error: any) {
+            return error;
+        }
+    }
 }

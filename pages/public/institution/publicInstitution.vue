@@ -59,6 +59,10 @@ const breadcrumb = ref([
     name: t("ngos"),
     url: "/institution",
   },
+  {
+    name: t("details"),
+    url: "#",
+  },
 ]);
 
 const slideTo = (index) => {
@@ -70,17 +74,6 @@ const slideTo = (index) => {
   <div>
     <Breadcrumb :list-items="breadcrumb"> </Breadcrumb>
   </div>
-  <vue-easy-lightbox
-    :visible="showGallery"
-    :imgs="mapPublicImages"
-    :index="image"
-    :loop="true"
-    :moveDisabled="true"
-    @hide="closeGallery"
-    :rotateDisabled="true"
-  >
-  </vue-easy-lightbox>
-
   <section class="bg-white dark:bg-gray-900">
     <div class="py-8 px-4 mx-auto max-w-6xl lg:py-16">
       <div class="pb-2">

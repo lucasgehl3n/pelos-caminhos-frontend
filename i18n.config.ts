@@ -134,6 +134,7 @@ export default defineI18nConfig(() => ({
             size_tooltip: 'Mini: Until 5kg, Small: Until 10kg, Medium: Until 15kg, Big: Until 20kg',
             invalid_document_personal: 'Invalid document',
             document_not_validated: "Document does not meet validation criteria!",
+            castrated: 'Castrated',
         },
         br: {
             password: 'Senha',
@@ -268,6 +269,7 @@ export default defineI18nConfig(() => ({
             size_tooltip: 'Mini: Até 5kg, Pequeno: Até 10kg, Médio: Até 15kg, Grande: Até 20kg',
             invalid_document_personal: 'CPF inválido',
             document_not_validated: "Documento não atende aos critérios de validação!",
+            castrated: 'Castrado',
         }
     }
 }))

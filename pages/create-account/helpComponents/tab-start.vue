@@ -50,7 +50,7 @@ const redirectToLogin = () => {
         <label for="profile-image">
           <img
             src="~/assets/svg/female_avatar.svg"
-            class="w-full max-h-20 h-full items-center justify-center"
+            class="w-auto max-h-20 items-center justify-center"
           />
         </label>
       </ImageUpload>

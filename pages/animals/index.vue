@@ -96,6 +96,8 @@ const mapRequestToForm = (data) => {
   animalTemp.age = data.age;
   animalTemp.gender = data.gender;
   animalTemp.animalImages = data.animalImages;
+  animalTemp.role = data.role;
+  animalTemp.institution = data.institution;
   listAnimals.value.push(animalTemp);
 };
 
@@ -198,12 +200,12 @@ const closeModalAi = () => {
         </BadgeFilter>
       </div>
       <div class="pr-2 sm:pr-0 w-auto">
-        <BadgeFilter :title="'Cachorros'" @click="filterDog" :clicked="filter.dog">
+        <BadgeFilter :title="t('dog')" @click="filterDog" :clicked="filter.dog">
         </BadgeFilter>
       </div>
 
       <div class="w-auto">
-        <BadgeFilter :title="'Gatos'" @click="filterCat" :clicked="filter.cat">
+        <BadgeFilter :title="t('cat')" @click="filterCat" :clicked="filter.cat">
         </BadgeFilter>
       </div>
     </div>

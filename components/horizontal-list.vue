@@ -4,7 +4,7 @@ import "v3-infinite-loading/lib/style.css";
 import NoResultsFound from "../components/no-results-found.vue";
 
 const props = defineProps({
-  list: [],
+  list: [] | Array,
   infiniteLoading: Object,
 });
 

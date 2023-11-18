@@ -16,4 +16,15 @@ export default class LoginGateway {
             return error;
         }
     }
+
+    static async Logout(){
+        try {
+            const res = await axios.post(`${Constants.API_URL}/logout`,
+                { withCredentials: true },
+            );
+            return res;
+        } catch (error) {
+            return error;
+        }
+    }
 }

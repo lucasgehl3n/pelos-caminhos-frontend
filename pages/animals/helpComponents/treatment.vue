@@ -23,7 +23,7 @@ const dispatchEmit = (entity) => {
 };
 
 
-const treatmentCurrent = ref(TreatmentModel);
+const treatmentCurrent = ref(new TreatmentModel());
 const openModal = (treatment) => {
   if (treatment) {
     treatmentCurrent.value = treatment;

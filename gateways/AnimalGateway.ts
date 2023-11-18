@@ -163,4 +163,15 @@ export default class AnimalGateway {
             return error;
         }
     }
+
+    static async GetPublicInfos(id: string) {
+        try {
+            const res = await axios.get(`${Constants.API_URL}/public/animal/${id}`,
+                { withCredentials: true }
+            );
+            return res;
+        } catch (error) {
+            return error;
+        }
+    }
 }

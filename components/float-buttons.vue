@@ -25,6 +25,10 @@ const props = defineProps({
 const executePrimaryAction = () => {
   props.primaryAction();
 };
+
+const executeSecondaryAction = () => {
+  props.secondaryAction();
+};
 </script>
 
 <template>
@@ -33,23 +37,15 @@ const executePrimaryAction = () => {
   >
     <div class="grid h-full max-w-lg grid-cols-2 mx-auto">
       <button
-        data-tooltip-target="tooltip-home"
         type="button"
-        :click="props.secondaryAction"
+        v-on:click="executeSecondaryAction"
         class="inline-flex flex-col items-center justify-center px-5 rounded-l-full hover:bg-gray-50 dark:hover:bg-gray-800 group"
       >
         <font-awesome-icon :icon="['fas', props.secondaryIcon]" class="text-3xl" />
         <span class="sr-only">Home</span>
         Perfil público
       </button>
-      <div
-        id="tooltip-home"
-        role="tooltip"
-        class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
-      >
-        Home
-        <div class="tooltip-arrow" data-popper-arrow></div>
-      </div>
+
       <div class="flex items-center justify-center">
         <button
           data-tooltip-target="tooltip-new"

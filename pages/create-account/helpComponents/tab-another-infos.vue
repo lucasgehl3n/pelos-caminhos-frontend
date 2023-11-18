@@ -28,7 +28,7 @@ const showSuccessModal = () => {
 
 const saveForm = async () => {
   if (props.fieldValidatorForm.validateRequiredFields()) {
-    if (validateDocument()) {
+    if (props.fieldValidatorForm.validateDocument()) {
       props.form.cities = [...props.citiesAdded];
       const res = await UserGateway.Save(deepcopy(props.form));
       if (res && res.data && (res.data.id || res.data.id === 0)) {

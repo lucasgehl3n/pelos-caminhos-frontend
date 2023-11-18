@@ -96,7 +96,7 @@ export default class FieldValidatorForm {
             } else {
                 field.fieldError.error = false;
                 field.fieldError.titleMessage = "";
-                field.fieldError.fieldError.bodyMessage = "";
+                field.fieldError.bodyMessage = "";
                 return true;
             }
         }
