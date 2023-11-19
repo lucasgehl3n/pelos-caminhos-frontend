@@ -2,12 +2,19 @@
 import bottomNavigator from "../components/bottom-navigator.vue";
 import desktopSidebar from "../components/desktop-sidebar.vue";
 import axios from "axios";
+
 axios.defaults.withCrendentails = true;
 const route = useRoute();
+onMounted(() => {
+  const mainElement = document.getElementById('mainContent');
+  if (mainElement) {
+    mainElement.focus();
+  }
+});
 </script>
 
 <template>
-  <perfect-scrollbar class="scrollable w-full .app-scroll">
+  <perfect-scrollbar class="scrollable w-full .app-scroll" id="main">
     <Title>Pelos Caminhos</Title>
 
     <div class="dark:text-white w-full">
@@ -24,7 +31,7 @@ const route = useRoute();
           <div class="flex h-screen">
             <desktopSidebar></desktopSidebar>
 
-            <div class="block p-8 w-full">
+            <div class="block p-8 w-full"  id="mainContent">
               <NuxtPage />
             </div>
           </div>

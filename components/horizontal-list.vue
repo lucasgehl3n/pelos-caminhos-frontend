@@ -9,10 +9,17 @@ const props = defineProps({
 });
 
 const hasItemsOnList = computed(() => props.list && props.list.length > 0);
+
+onMounted(() => {
+  const mainElement = document.getElementById('mainList');
+  if (mainElement) {
+    mainElement.focus();
+  }
+});
 </script>
 
 <template :slot-scope="{ entity }">
-  <perfect-scrollbar class="scrollable w-full">
+  <perfect-scrollbar class="scrollable w-full" id="mainList">
     <div class="w-full">
       <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 md:gap-4">
         <div

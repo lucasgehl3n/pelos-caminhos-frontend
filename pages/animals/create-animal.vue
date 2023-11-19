@@ -183,7 +183,7 @@ const adoptionFields = computed(() => ({
     tab: 2,
   },
   idAdoptionUser: {
-    field: form.idAdoptionUser,
+    field: form.adoptionUser.id,
     fieldError: adoptionErrorValidate.idAdoptionUser,
     tab: 2,
   },
@@ -764,7 +764,7 @@ const closeModalGenericError = () => {
           </div>
 
           <div class="pl-2 w-full">
-            <Input :placeholder="'Peso'" v-model="form.weight" @change="changeSize" :label="'Peso'" type="number" min="0"
+            <Input :placeholder="'Peso'" v-model="form.weight" @change="changeSize" :label="'Peso'" type="number" min="0" step="1" 
               name="weight" />
           </div>
         </div>

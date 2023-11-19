@@ -17,15 +17,13 @@ onMounted(() => {
   <div class="flex z-40 top-0 left-0 h-full transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
     <div class="overflow-y-auto z-30 py-5 px-3 w-16 h-full border-r bg-gray-800 border-gray-700">
       <ul class="space-y-2">
-        <li v-if="store.getImageProfile">
-          <button id="dropdownUserNameButton"
-            class="flex justify-between items-center w-full rounded-lg" type="button">
+        <!-- <li v-if="store.getImageProfile">
+          <button id="dropdownUserNameButton" class="flex justify-between items-center w-full rounded-lg" type="button">
             <div class="flex items-center">
-              <img :src="store.getImageProfile"
-                class="w-full max-h-16 rounded-full" />
+              <img :src="store.getImageProfile" class="w-full max-h-16 rounded-full" />
             </div>
           </button>
-        </li>
+        </li> -->
         <li>
           <a href="#" v-on:click="router.push({ name: 'institution' })"
             class="flex items-center p-2 text-gray-400 rounded-lg transition duration-75 dark:text-gray-400 hover:bg-gray-400"

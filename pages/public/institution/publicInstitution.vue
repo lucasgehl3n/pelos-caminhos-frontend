@@ -36,6 +36,7 @@ const mapRequestToForm = (data) => {
   form.publicImages = data.publicImages;
   form.createdAt = data.createdAt;
   form.howVolunteersCanHelp = data.howVolunteersCanHelp;
+  form.userCreator = data.userCreator;
 };
 
 const mapPublicImages = computed(() => {
@@ -80,15 +81,8 @@ const slideTo = (index) => {
       <div class="pb-2">
         <PageHeader :title="form.name"></PageHeader>
       </div>
-      <vue-easy-lightbox
-        :visible="showGallery"
-        :imgs="mapPublicImages"
-        :index="currentSlide"
-        :loop="true"
-        :moveDisabled="true"
-        @hide="closeGallery"
-        :rotateDisabled="true"
-      >
+      <vue-easy-lightbox :visible="showGallery" :imgs="mapPublicImages" :index="currentSlide" :loop="true"
+        :moveDisabled="true" @hide="closeGallery" :rotateDisabled="true">
       </vue-easy-lightbox>
       <div class="grid gap-4 mb-4 sm:grid-cols-3 sm:gap-6 md:gap-12 sm:mb-5">
         <div class="sm:col-span-2">
@@ -96,21 +90,11 @@ const slideTo = (index) => {
             <Carousel id="gallery" :items-to-show="1" v-model="currentSlide">
               <Slide v-for="slide in mapPublicImages" :key="slide">
                 <div class="carousel__item">
-                  <img
-                    :src="slide.src"
-                    class="h-full max-h-60 w-auto"
-                    v-on:click="showGalleryImage"
-                  />
+                  <img :src="slide.src" class="h-full max-h-60 w-auto" v-on:click="showGalleryImage" />
                 </div>
               </Slide>
             </Carousel>
-            <Carousel
-              id="thumbnails"
-              :items-to-show="6"
-              :wrap-around="true"
-              v-model="currentSlide"
-              ref="carousel"
-            >
+            <Carousel id="thumbnails" :items-to-show="6" :wrap-around="true" v-model="currentSlide" ref="carousel">
               <Slide v-for="(slide, i) in mapPublicImages" :key="slide">
                 <div class="carousel__item" @click="slideTo(i)">
                   <img :src="slide.src" class="h-full max-h-20 w-full" />
@@ -130,10 +114,7 @@ const slideTo = (index) => {
             <div class="font-semibold text-lg leading-tight tracking-tight">
               {{ $t("how_volunteers_can_help") }}
             </div>
-            <p
-              class="text-md text-gray-500 pt-2"
-              v-html="form.howVolunteersCanHelp"
-            ></p>
+            <p class="text-md text-gray-500 pt-2" v-html="form.howVolunteersCanHelp"></p>
           </div>
         </div>
         <!-- Column -->
@@ -141,19 +122,15 @@ const slideTo = (index) => {
           <dl>
             <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">
               <div>
-                <img
-                  class="object-cover h-full md:w-auto max-w-xs sm:w-1/4 w-full rounded-md"
-                  v-if="form.logo"
-                  :src="form.logo"
-                  alt=""
-                  style="max-height: 6rem"
-                />
+                <img class="object-cover h-full md:w-auto max-w-xs sm:w-1/4 w-full rounded-md" v-if="form.logo"
+                  :src="form.logo" alt="" style="max-height: 6rem" />
               </div>
             </dt>
-            <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">
+            <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white" v-if="form.userCreator">
               {{ $t("responsible") }}
             </dt>
-            <dd class="mb-4 text-gray-500 dark:text-gray-400 sm:mb-5">Lucas Gehlen</dd>
+            <dd class="mb-4 text-gray-500 dark:text-gray-400 sm:mb-5" v-if="form.userCreator">{{ form.userCreator.name }}
+            </dd>
             <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">
               {{ $t("phone") }}
             </dt>
@@ -173,9 +150,7 @@ const slideTo = (index) => {
               {{ moment(form.createdAt).format("DD/MM/yyyy") }}
             </dd>
 
-            <dt
-              class="mb-2 font-semibold leading-none text-gray-900 dark:text-white h-40 w-40"
-            >
+            <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white h-40 w-40">
               <qrCode :text="Constants.API_URL + route.fullPath"></qrCode>
             </dt>
           </dl>
@@ -207,7 +182,7 @@ const slideTo = (index) => {
   transform: rotateY(-20deg) scale(0.9);
 }
 
-.carousel__slide--active ~ .carousel__slide {
+.carousel__slide--active~.carousel__slide {
   transform: rotateY(20deg) scale(0.9);
 }
 
