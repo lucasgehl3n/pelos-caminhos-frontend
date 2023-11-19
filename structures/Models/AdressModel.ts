@@ -1,6 +1,6 @@
-export default class AdressModel{
-    id: number = 0;
-    street:string = '';
-    number:string = '';
-    complement:string = '';
+export default class AdressModel {
+    id: number | null = null;
+    street: string = '';
+    number: string = '';
+    complement: string = '';
 }
