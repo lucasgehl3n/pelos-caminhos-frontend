@@ -15,4 +15,5 @@ export default class InstitutionModel {
     deletedPublicImages: Array<number> = [];
     role: string = '';
     address: AdressModel = new AdressModel();
+    howVolunteersCanHelp: string = ''
 }

@@ -35,6 +35,7 @@ const mapRequestToForm = (data) => {
   form.logo = data.image;
   form.publicImages = data.publicImages;
   form.createdAt = data.createdAt;
+  form.howVolunteersCanHelp = data.howVolunteersCanHelp;
 };
 
 const mapPublicImages = computed(() => {
@@ -131,7 +132,7 @@ const slideTo = (index) => {
             </div>
             <p
               class="text-md text-gray-500 pt-2"
-              v-html="form.description"
+              v-html="form.howVolunteersCanHelp"
             ></p>
           </div>
         </div>
