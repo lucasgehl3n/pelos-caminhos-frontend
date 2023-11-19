@@ -168,7 +168,7 @@ const getGender = computed(() => {
       </dd>
       
       <perfect-scrollbar class="scrollable w-full px-2">
-        <BadgeFilter v-if="form.idSituation" :title="situations[form.idSituation].name" :clicked="true"
+        <BadgeFilter v-if="form.idSituation" :title="situations.find(x => x.id == form.idSituation)?.name" :clicked="true"
           :class="situations[form.idSituation].class" :showChecked="false" :hideTimes="true">
         </BadgeFilter>
 
