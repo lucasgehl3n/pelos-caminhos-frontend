@@ -62,10 +62,9 @@ function goToRegisterAccount() {
         <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen pt:mt-0">
             <div class="w-full bg-white rounded-md shadow md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800">
                 <div class="p-6 space-y-4 md:space-y-6 lg:space-y-8 sm:p-8">
-                    <h1
-                        class="text-xl font-sans font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                        Pelos Caminhos
-                    </h1>
+                    <div class="w-full items-center justify-center inline-flex flex-col">
+                        <img src="~/assets/svg/logo-horizontal.svg" class="h-20 w-auto">
+                    </div>
                     <div class="space-y-4 md:space-y-6" action="#">
                         <div>
                             <Input v-model="email" :placeholder="$t('placeholder_mail')" label="E-mail" name="email" />
