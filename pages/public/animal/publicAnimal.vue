@@ -124,7 +124,7 @@ const getSize = () => {
     },
   ]
 
-  return size[form.size]?.text || "";
+  return size[form.size - 1]?.text || "";
 }
 
 const getWeight = computed(() => {
