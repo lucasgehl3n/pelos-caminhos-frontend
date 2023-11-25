@@ -22,7 +22,7 @@ const isVolunteer = (entity) => {
 }
 
 const getRoutePath = (role) => {
-  if (role === Roles.Administrator) {
+  if (role === Roles.Administrator || role === Roles.Volunteer) {
     return '/animals/';
   }
   return '/public/animal/'
@@ -57,8 +57,8 @@ const redirectToDetail = (entity) => {
                   <img src="~/assets/svg/hand.svg" :alt="$t('volunteer')" class="w-6 h-5" />
                 </template>
 
-                <h5 class="sm:ml-3 mb-2 font-bold tracking-tight text-gray-900 w-full"
-                  :class="{ 'ml-3': isAdministrator || isVolunteer }">
+                <h5 class="mb-2 font-bold tracking-tight text-gray-900 w-full"
+                  :class="{ 'sm:ml-3': isAdministrator || isVolunteer }">
                   <font-awesome-icon :icon="['fas', 'mars']" class="text-blue-600" v-if="entity.gender === 1" />
                   <font-awesome-icon :icon="['fas', 'venus']" class="text-fuchsia-400" v-if="entity.gender === 2" />
                   {{ entity.name }}
