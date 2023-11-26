@@ -8,7 +8,6 @@ import "vue-easy-lightbox/dist/external-css/vue-easy-lightbox.css";
 import { Carousel, Slide } from "vue3-carousel";
 import Breadcrumb from "../../../components/breadcrumb.vue";
 import qrCode from "../../../components/qr-code.vue";
-import Constants from "../../../constants";
 import "vue3-carousel/dist/carousel.css";
 import BadgeFilter from "../../../components/badge-filter.vue";
 import { AnimalSituation } from "../../../enums/AnimalSituation.ts";
@@ -135,7 +134,7 @@ const getWeight = computed(() => {
 
 const getYears = computed(() => {
   const age = form.age;
-  const prefixe = age > 1 ? t("years") : t("year");
+  const prefixe = age > 1 ? t("years") : age  === 1 ? t("year") : t("less_than_one");
   return age + " " + prefixe;
 })
 
@@ -243,7 +242,7 @@ const getGender = computed(() => {
               </dd>
 
               <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white h-40 w-40">
-                <qrCode :text="Constants.API_URL + route.fullPath"></qrCode>
+                <qrCode></qrCode>
               </dt>
             </dl>
           </div>

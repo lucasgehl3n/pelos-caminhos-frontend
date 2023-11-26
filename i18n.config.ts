@@ -135,6 +135,7 @@ export default defineI18nConfig(() => ({
             invalid_document_personal: 'Invalid document',
             document_not_validated: "Document does not meet validation criteria!",
             castrated: 'Castrated',
+            less_than_one: 'Less than one year',
         },
         br: {
             password: 'Senha',
@@ -270,6 +271,7 @@ export default defineI18nConfig(() => ({
             invalid_document_personal: 'CPF inválido',
             document_not_validated: "Documento não atende aos critérios de validação!",
             castrated: 'Castrado',
+            less_than_one: 'Menos de um ano',
         }
     }
 }))

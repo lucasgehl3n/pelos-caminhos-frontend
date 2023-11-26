@@ -58,7 +58,7 @@ const redirectToDetail = (entity) => {
                 </template>
 
                 <h5 class="mb-2 font-bold tracking-tight text-gray-900 w-full"
-                  :class="{ 'sm:ml-3': isAdministrator || isVolunteer }">
+                  :class="{ 'sm:ml-3': isAdministrator(entity) || isVolunteer(entity) }">
                   <font-awesome-icon :icon="['fas', 'mars']" class="text-blue-600" v-if="entity.gender === 1" />
                   <font-awesome-icon :icon="['fas', 'venus']" class="text-fuchsia-400" v-if="entity.gender === 2" />
                   {{ entity.name }}

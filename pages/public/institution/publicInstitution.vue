@@ -151,7 +151,7 @@ const slideTo = (index) => {
             </dd>
 
             <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white h-40 w-40">
-              <qrCode :text="Constants.API_URL + route.fullPath"></qrCode>
+              <qrCode></qrCode>
             </dt>
           </dl>
         </div>

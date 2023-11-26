@@ -1,5 +1,6 @@
 export default class AnimalFilter{
     bonded: boolean = false;
+    notBonded: boolean = false;
     cat: boolean = false;
     dog: boolean = false;
     search: string = '';
@@ -11,6 +12,10 @@ export default class AnimalFilter{
 
         if (this.bonded) {
             url += 'bonded=true&';
+        }
+
+        if (this.notBonded) {
+            url += 'notBonded=true&';
         }
 
         if (this.cat) {

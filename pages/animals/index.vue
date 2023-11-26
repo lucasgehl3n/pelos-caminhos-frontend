@@ -32,6 +32,13 @@ const filterBounded = async () => {
   filter.value.bonded = invertedValue;
 };
 
+const filterNotBounded = async () => {
+  let invertedValue = !filter.value.notBonded;
+
+  resetAllFilters();
+  filter.value.notBonded = invertedValue;
+};
+
 const filterCat = async () => {
   let invertedValue = !filter.value.cat;
 
@@ -196,6 +203,15 @@ const closeModalAi = () => {
           :number="counters.bounded"
           @click="filterBounded"
           :clicked="filter.bonded"
+        >
+        </BadgeFilter>
+      </div>
+      <div class="pr-2 sm:pr-0 w-auto">
+        <BadgeFilter
+          :title="'Sem vínculo'"
+          :number="counters.bounded"
+          @click="filterNotBounded"
+          :clicked="filter.notBonded"
         >
         </BadgeFilter>
       </div>

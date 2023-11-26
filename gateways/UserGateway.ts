@@ -33,9 +33,8 @@ export default class UserGateway {
             const modelWithoutArrays = { ...model };
             delete modelWithoutArrays.cities;
             delete modelWithoutArrays.interests;
-
+            modelWithoutArrays.profileImage = "";
             const profileImage = await (await fetch(model.profileImage)).blob();
-
             const formData = serialize(modelWithoutArrays);
             formData.append('profileImage', profileImage);
             _mapCitiesToFormData(model.cities!, formData);

@@ -14,10 +14,10 @@ onMounted(() => {
 </script>
 
 <template>
-  <perfect-scrollbar class="scrollable w-full .app-scroll" id="main">
+  <perfect-scrollbar class="scrollable w-full h-full .app-scroll" id="main">
     <Title>Pelos Caminhos</Title>
 
-    <div class="dark:text-white w-full">
+    <div class="dark:text-white w-full h-full">
       <template v-if="!route.path.includes('login')">
         <template v-if="$device.isMobile">
           <div class="block p-8 w-full">
@@ -31,7 +31,7 @@ onMounted(() => {
           <div class="flex h-screen">
             <desktopSidebar></desktopSidebar>
 
-            <div class="block p-8 w-full"  id="mainContent">
+            <div class="block p-8 w-full h-full" id="mainContent">
               <NuxtPage />
             </div>
           </div>

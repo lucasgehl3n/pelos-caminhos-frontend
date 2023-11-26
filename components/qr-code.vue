@@ -13,11 +13,11 @@ const generateQR = async (text) => {
     console.error(err);
   }
 };
-
+const textQRCode = computed(() => props.text || window.location.href);
 const qr = ref("");
 onMounted(() => {
-  if (props.text) {
-    generateQR(props.text).then((response) => {
+  if (textQRCode.value) {
+    generateQR(textQRCode.value).then((response) => {
       if (response) qr.value = response;
     });
   }
