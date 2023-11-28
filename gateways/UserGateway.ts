@@ -33,7 +33,7 @@ export default class UserGateway {
             const modelWithoutArrays = { ...model };
             delete modelWithoutArrays.cities;
             delete modelWithoutArrays.interests;
-            modelWithoutArrays.profileImage = null;
+            delete modelWithoutArrays.profileImage;
             const formData = serialize(modelWithoutArrays);
             if (model.profileImage) {
                 const profileImage = await (await fetch(model.profileImage)).blob();
