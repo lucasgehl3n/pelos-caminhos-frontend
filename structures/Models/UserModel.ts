@@ -13,5 +13,5 @@ export default class UserModel {
     address: AdressModel = new AdressModel();
     interests?: InterestModel[] = [];
     cities?: CityModel[] = [];
-    profileImage: string = '';
+    profileImage: string | null = null;
 }
