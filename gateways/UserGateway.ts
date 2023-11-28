@@ -34,9 +34,11 @@ export default class UserGateway {
             delete modelWithoutArrays.cities;
             delete modelWithoutArrays.interests;
             modelWithoutArrays.profileImage = "";
-            const profileImage = await (await fetch(model.profileImage)).blob();
             const formData = serialize(modelWithoutArrays);
-            formData.append('profileImage', profileImage);
+            if (model.profileImage) {
+                const profileImage = await (await fetch(model.profileImage)).blob();
+                formData.append('profileImage', profileImage);
+            }
             _mapCitiesToFormData(model.cities!, formData);
             _mapInterestsToFormData(model.interests!, formData);
 
@@ -53,7 +55,7 @@ export default class UserGateway {
             return error;
         }
     }
-    
+
     static async List(search: string) {
         try {
             const res = await axios.get(`${Constants.API_URL}/user?search=${search}`,
