@@ -27,7 +27,7 @@ onMounted(() => {
           </button>
         </li> -->
         <li>
-          <a href="#" v-on:click="router.push({ name: 'institution' })"
+          <a href="#" v-on:click="router.push({ name: 'dashboard' })"
             class="flex items-center p-2 text-gray-400 rounded-lg transition duration-75 dark:text-gray-400 hover:bg-gray-400"
             :class="{ 'bg-gray-700': route.path.includes('dashboard') }">
             <img src="~/assets/svg/presentation-chart-line.svg" class="w-6 h-6" />

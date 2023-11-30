@@ -1,7 +1,7 @@
 <script setup>
-import Institution from '../pages/institution/index.vue';
+import Dashboard from '../pages/dashboard/index.vue';
 </script>
 
 <template>
-   <Institution></Institution>
+   <Dashboard></Dashboard>
 </template>

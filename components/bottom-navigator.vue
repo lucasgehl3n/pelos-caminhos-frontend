@@ -6,7 +6,7 @@ const route = useRoute();
 <template>
   <div>
     <div
-      class="fixed bottom-0 left-0 z-20 w-full h-16 bg-white border-t border-gray-200 dark:bg-gray-700 dark:border-gray-600"
+      class="fixed bottom-0 left-0 z-20 w-full h-16 bg-white border-t border-gray-200 pr-5 dark:bg-gray-700 dark:border-gray-600"
     >
       <div class="grid h-full max-w-lg grid-cols-4 mx-auto font-medium">
         <button
@@ -15,7 +15,7 @@ const route = useRoute();
         >
           <a
             href="#"
-            v-on:click="router.push({ name: 'institution' })"
+            v-on:click="router.push({ name: 'dashboard' })"
             class="flex items-center px-2"
           >
             <img src="~/assets/svg/presentation-chart-line-dark.svg" class="w-6 h-6" />

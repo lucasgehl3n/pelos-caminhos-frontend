@@ -16,6 +16,10 @@ export const deviceStore = defineStore('user', {
         }
     },
     getters:{
+        getFirstName(state){
+            let name = state.userInfos.name;
+            return name ? name.split(' ')[0] : '';
+        },
         getUserName(state){
             return state.userInfos.name;
         },

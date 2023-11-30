@@ -10,6 +10,15 @@ import Loading from "vue3-loading-overlay";
 import AnimalModel from "../../structures/Models/AnimalModel";
 import AiBreedSearch from "./helpComponents/ai-breed-search.vue";
 import { Button } from "flowbite-vue";
+const props = defineProps({
+  showHeader: true,
+});
+
+const showHeader = computed(() => {
+  const isNullHeader = props.showHeader === null || props.showHeader === undefined;
+  if (isNullHeader) return true;
+  return props.showHeader;
+});
 const { t } = useI18n();
 
 const router = useRouter();
@@ -169,22 +178,24 @@ const closeModalAi = () => {
 };
 </script>
 <template>
-  <div class="pb-5">
-    <Breadcrumb :list-items="breadcrumb"> </Breadcrumb>
-  </div>
-  <div class="w-full flex">
-    <div class="w-4/5">
-      <PageHeader :title="'Animais'"></PageHeader>
+  <template v-if="showHeader">
+    <div class="pb-5">
+      <Breadcrumb :list-items="breadcrumb"> </Breadcrumb>
     </div>
-    <div class="w-full flex-row sm:w-1/5 sm:items-end text-right sm:px-5 py-4">
-      <a
-        href="#"
-        class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-        v-on:click="router.push({ path: '/animals/create' })"
-        >Cadastrar Animal</a
-      >
+    <div class="w-full flex">
+      <div class="w-4/5">
+        <PageHeader :title="'Animais'"></PageHeader>
+      </div>
+      <div class="w-full flex-row sm:w-1/5 sm:items-end text-right sm:px-5 py-4">
+        <a
+          href="#"
+          class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+          v-on:click="router.push({ path: '/animals/create' })"
+          >Cadastrar Animal</a
+        >
+      </div>
     </div>
-  </div>
+  </template>
 
   <perfect-scrollbar class="scrollable w-full psBadges">
     <div class="flex w-full whitespace-nowrap">
@@ -240,7 +251,7 @@ const closeModalAi = () => {
           class="mt-2 w-full sm:ml-10 sm:mt-0"
         >
           <font-awesome-icon :icon="['fas', 'image']" class="text-md" />
-          &nbsp; {{ $t('search_with_image') }}
+          &nbsp; {{ $t("search_with_image") }}
         </Button>
       </div>
     </div>
