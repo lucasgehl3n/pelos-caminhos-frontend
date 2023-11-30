@@ -165,28 +165,37 @@ const breadcrumb = ref([
   </template>
 
   <perfect-scrollbar class="scrollable w-full psBadges">
-    <div class="w-full whitespace-nowrap">
-      <BadgeFilter
-        :title="$t('my_bounded')"
-        :number="counters.bounded"
-        @click="filterBounded"
-        :clicked="filter.bonded"
-      >
-      </BadgeFilter>
-      <BadgeFilter
-        :title="$t('volunteer')"
-        :number="counters.volunteer"
-        @click="filterVolunteer"
-        :clicked="filter.volunteer"
-      >
-      </BadgeFilter>
-      <BadgeFilter
-        :title="$t('admin')"
-        :number="counters.admin"
-        @click="filterAdmin"
-        :clicked="filter.admin"
-      >
-      </BadgeFilter>
+    <div class="w-full whitespace-nowrap flex">
+      <div class="w-fit pr-2">
+        <BadgeFilter
+          :title="$t('my_bounded')"
+          :number="counters.bounded"
+          @click="filterBounded"
+          :clicked="filter.bonded"
+        >
+        </BadgeFilter>
+      </div>
+
+      <div class="w-fit pr-2">
+        <BadgeFilter
+          :title="$t('volunteer')"
+          :number="counters.volunteer"
+          @click="filterVolunteer"
+          :clicked="filter.volunteer"
+          class="w-fit"
+        >
+        </BadgeFilter>
+      </div>
+      <div class="w-fit">
+        <BadgeFilter
+          :title="$t('admin')"
+          :number="counters.admin"
+          @click="filterAdmin"
+          :clicked="filter.admin"
+          class="w-fit"
+        >
+        </BadgeFilter>
+      </div>
     </div>
   </perfect-scrollbar>
 

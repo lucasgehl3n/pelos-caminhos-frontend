@@ -67,7 +67,7 @@ const updateSituation = (v) => {
           :title="option.name"
           :clicked="props.form.idSituation === option.id"
           v-on:click="updateSituation(option.id)"
-          class="sm:w-full"
+          class="w-fit"
           :class="option.class"
           :showChecked="true"
         >

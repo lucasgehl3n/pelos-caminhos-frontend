@@ -407,6 +407,7 @@ const goToPublicProfile = () => {
       <div>
         <p class="pb-2">{{ $t("profile_image") }}</p>
         <ImageUpload
+          :class="'object-contain'"
           v-on:change-image="onChangeImageUploaded"
           :show-gallery="true"
           :rounded="true"

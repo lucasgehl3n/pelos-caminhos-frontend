@@ -1,6 +1,17 @@
 <script setup>
 const router = useRouter();
 const route = useRoute();
+import UserGateway from "../gateways/UserGateway.ts";
+import userStore from "../stores/user.store.ts";
+const store = userStore();
+
+onMounted(() => {
+  if (!route.path.includes('public')) {
+    UserGateway.DetailMenu().then((response) => {
+      store.setUser(response.data);
+    });
+  }
+});
 </script>
 
 <template>

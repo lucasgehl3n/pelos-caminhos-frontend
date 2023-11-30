@@ -93,14 +93,14 @@ const redirectToLogin = () => {
           :title="$t('help_institutions')"
           :clicked="interestsControlForm.checkInterestClicked(Interests.Volunteer)"
           v-on:click="interestsControlForm.addInterest(Interests.Volunteer)"
-          class="sm:w-full"
+          class="w-fit sm:w-full"
         >
         </BadgeFilter>
         <BadgeFilter
           :title="$t('want_adopt')"
           :clicked="interestsControlForm.checkInterestClicked(Interests.Adoption)"
           v-on:click="interestsControlForm.addInterest(Interests.Adoption)"
-          class="sm:w-full"
+          class="w-fit sm:w-full"
         >
         </BadgeFilter>
       </div>
@@ -109,14 +109,14 @@ const redirectToLogin = () => {
           :title="$t('register_own_ngo')"
           :clicked="interestsControlForm.checkInterestClicked(Interests.MyOwnOng)"
           v-on:click="interestsControlForm.addInterest(Interests.MyOwnOng)"
-          class="sm:w-full"
+          class="w-fit sm:w-full"
         >
         </BadgeFilter>
         <BadgeFilter
           :title="$t('i_dont_know_at_the_moment')"
           :clicked="interestsControlForm.checkInterestClicked(Interests.DontKnow)"
           v-on:click="interestsControlForm.addInterest(Interests.DontKnow)"
-          class="sm:w-full"
+          class="w-fit sm:w-full"
         >
         </BadgeFilter>
       </div>

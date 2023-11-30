@@ -343,3 +343,13 @@ const save = async () => {
     </template>
   </Modal>
 </template>
+
+<style scoped>
+.entities {
+  max-height: 250px;
+
+  @media (max-width: 768px) {
+    max-height: 100px;
+  }
+}
+</style>

@@ -31,7 +31,7 @@ onMounted(() => {
           <div class="flex h-screen">
             <desktopSidebar></desktopSidebar>
 
-            <div class="block p-8 w-full h-full" id="mainContent">
+            <div class="block ml-16 p-8 w-full h-full" id="mainContent">
               <NuxtPage />
             </div>
           </div>

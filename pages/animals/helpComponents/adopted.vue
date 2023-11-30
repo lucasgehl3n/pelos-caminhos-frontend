@@ -104,7 +104,7 @@ const emitUpdateAdoptionDate = (event) => {
       <ErrorMessage v-bind="props.formFieldErrorValidator.adoptionDate" />
     </div>
 
-    <div v-if="props.form.adoptionUser" class="pt-2">
+    <div v-if="props.form.adoptionUser" class="pt-2 w-fit">
       {{ $t('selected_adoption_user') }}:
       <BadgeFilter
         :title="props.form.adoptionUser.name"

@@ -16,7 +16,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="flex z-40 top-0 left-0 h-full sm:translate-x-0" aria-label="Sidebar">
+  <div class="flex z-40 top-0 left-0 h-full sm:translate-x-0 fixed" aria-label="Sidebar">
     <div class="overflow-y-auto z-30 py-5 px-3 w-16 h-full border-r bg-gray-800 border-gray-700">
       <ul class="space-y-2">
         <!-- <li v-if="store.getImageProfile">

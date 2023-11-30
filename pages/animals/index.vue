@@ -199,7 +199,7 @@ const closeModalAi = () => {
 
   <perfect-scrollbar class="scrollable w-full psBadges">
     <div class="flex w-full whitespace-nowrap">
-      <div class="pr-2 sm:pr-0 w-auto" v-if="filter.image">
+      <div class="pr-2 sm:pr-0 w-fit" v-if="filter.image">
         <BadgeFilter
           :title="'Procurar com uma imagem'"
           :number="counters.bounded"
@@ -208,7 +208,7 @@ const closeModalAi = () => {
         >
         </BadgeFilter>
       </div>
-      <div class="pr-2 sm:pr-0 w-auto">
+      <div class="pr-2 sm:pr-0 w-fit">
         <BadgeFilter
           :title="$t('my_bounded')"
           :number="counters.bounded"
@@ -217,7 +217,7 @@ const closeModalAi = () => {
         >
         </BadgeFilter>
       </div>
-      <div class="pr-2 sm:pr-0 w-auto">
+      <div class="pr-2 sm:pr-0 w-fit">
         <BadgeFilter
           :title="'Sem vínculo'"
           :number="counters.bounded"
@@ -226,12 +226,12 @@ const closeModalAi = () => {
         >
         </BadgeFilter>
       </div>
-      <div class="pr-2 sm:pr-0 w-auto">
+      <div class="pr-2 sm:pr-0 w-fit">
         <BadgeFilter :title="t('dog')" @click="filterDog" :clicked="filter.dog">
         </BadgeFilter>
       </div>
 
-      <div class="w-auto">
+      <div class="w-fit">
         <BadgeFilter :title="t('cat')" @click="filterCat" :clicked="filter.cat">
         </BadgeFilter>
       </div>

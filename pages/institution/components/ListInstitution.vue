@@ -38,7 +38,7 @@ const redirectToDetail = (entity) => {
         <template v-slot="{ entity }">
             <div class="w-full h-full flex" v-on:click="redirectToDetail(entity)">
                 <div class="sm:p-5 py-5 px-2">
-                    <img class="object-cover h-full md:w-auto max-w-xs sm:w-1/4 w-full" v-if="entity.image"
+                    <img class="object-contain h-full md:w-auto max-w-xs sm:w-1/4 w-full" v-if="entity.image"
                         :src="entity.image" alt="" style="max-height: 4rem;">
                 </div>
                 <div class="p-5 w-full">
@@ -60,7 +60,7 @@ const redirectToDetail = (entity) => {
                             </template>
                         </div>
                     </div>
-                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400" v-html="entity.description"></p>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400" v-html="entity.description" v-show="$device.isDesktop"></p>
                 </div>
             </div>
         </template>

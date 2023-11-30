@@ -154,7 +154,7 @@ const emitUpdateForwardingDate = (event) => {
       class="pt-2"
     >
       {{ $t('selected_home') }}:
-      <div class="min-w-min md:w-auto">
+      <div class="w-fit min-w-min md:w-auto">
         <BadgeFilter
           :title="props.form.temporaryHome.name"
           :clicked="true"
